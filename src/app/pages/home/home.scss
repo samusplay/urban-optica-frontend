@@ -1,0 +1,70 @@
+
+// Estilos mejorados para el carrusel
+.carousel {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  
+  .carousel-inner {
+    border-radius: 12px;
+  }
+
+  img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.9);
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.02);
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+}
+
+// Efecto de transición suave para los slides
+.carousel-item {
+  transition: transform 0.6s ease-in-out;
+}
+
+// Indicadores del carrusel
+.carousel-indicators {
+  button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    
+    &.active {
+      background-color: #fff;
+      transform: scale(1.2);
+    }
+  }
+}

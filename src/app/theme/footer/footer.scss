@@ -1,0 +1,241 @@
+// Variables de colores
+$primary-color: #0d6efd;
+$dark-bg: #212529;
+$text-muted: #adb5bd;
+$border-color: #495057;
+
+// Estilos generales del footer
+footer {
+  background-color: $dark-bg;
+  position: relative;
+  overflow: hidden;
+  
+  // Efecto de patrón sutil
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  h5 {
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: $primary-color;
+      border-radius: 3px;
+    }
+  }
+  
+  .bi {
+    color: $primary-color;
+  }
+  
+  // Estilos para enlaces
+  a {
+    color: $text-muted;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: $primary-color;
+      transition: width 0.3s ease;
+    }
+    
+    &:hover {
+      color: #fff !important;
+      text-decoration: none !important;
+      
+      &::after {
+        width: 100%;
+      }
+      
+      .bi {
+        color: #fff;
+      }
+    }
+  }
+  
+  // Estilos para la sección de redes sociales
+  .social-links {
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: $primary-color;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        
+        .bi {
+          color: #fff;
+        }
+      }
+      
+      .bi {
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+  
+  // Estilos para el formulario de newsletter
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid $border-color;
+    color: #fff;
+    
+    &::placeholder {
+      color: $text-muted;
+    }
+    
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: $primary-color;
+      color: #fff;
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+  }
+  
+  .btn-primary {
+    background-color: $primary-color;
+    border: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  // Estilos para los métodos de pago
+  .payment-methods {
+    .bi {
+      font-size: 1.5rem;
+      color: $text-muted;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      
+      &:hover {
+        color: #fff;
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+  // Estilos para el copyright y enlaces legales
+  .text-muted {
+    color: $text-muted !important;
+  }
+  
+  .hover-white {
+    &:hover {
+      color: #fff !important;
+    }
+  }
+  
+  // Efecto de hover para los elementos de contacto
+  .list-unstyled {
+    li {
+      transition: all 0.3s ease;
+      
+      &:hover {
+        .bi {
+          color: $primary-color;
+        }
+        
+        span, div {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+  
+  // Estilos responsivos
+  @media (max-width: 991.98px) {
+    text-align: center;
+    
+    h5 {
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    
+    .social-links {
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    .list-unstyled {
+      margin-bottom: 2rem;
+      
+      li {
+        justify-content: center !important;
+        text-align: center;
+      }
+    }
+    
+    .payment-methods {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .text-md-start, .text-md-end {
+      text-align: center !important;
+    }
+    
+    .list-inline {
+      justify-content: center;
+    }
+  }
+}
+
+// Animación para el borde inferior del footer
+@keyframes borderGrow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+// Estilo para el separador
+hr {
+  border-top: 1px solid $border-color;
+  opacity: 0.3;
+}

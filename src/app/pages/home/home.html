@@ -1,1 +1,57 @@
-<p>home works!</p>
+<div class="container mt-4">
+  <div [id]="carouselId" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <button 
+        *ngFor="let s of slides; let i = index" 
+        type="button" 
+        [attr.data-bs-target]="'#' + carouselId" 
+        [attr.data-bs-slide-to]="i" 
+        [class.active]="i === 0" 
+        aria-current="true" 
+        [attr.aria-label]="'Slide ' + (i + 1)">
+      </button>
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+      <div 
+        class="carousel-item" 
+        *ngFor="let s of slides; let i = index" 
+        [ngClass]="{ 'active': i === 0 }"
+        [attr.data-bs-interval]="i === 0 ? 5000 : 3000">
+        <img 
+          [src]="s.src" 
+          class="d-block w-100" 
+          [alt]="s.alt" 
+          loading="lazy"
+          [style.height.px]="500"
+          [style.object-fit]="'cover'"
+          [style.object-position]="'center'" />
+        <div class="carousel-caption d-none d-md-block">
+          <h3>{{ s.title || 'Oferta Especial' }}</h3>
+          <p *ngIf="s.description">{{ s.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <button 
+      class="carousel-control-prev" 
+      type="button" 
+      [attr.data-bs-target]="'#' + carouselId" 
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button 
+      class="carousel-control-next" 
+      type="button" 
+      [attr.data-bs-target]="'#' + carouselId" 
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</div>
+

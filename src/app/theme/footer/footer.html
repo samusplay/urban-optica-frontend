@@ -1,1 +1,132 @@
-<p>footer works!</p>
+<footer class="bg-dark text-white pt-5">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Columna de información de la empresa -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="text-uppercase fw-bold mb-4">
+          <i class="bi bi-eyeglasses me-2"></i>Óptica Urban
+        </h5>
+        <p class="text-muted">
+          Tu visión es nuestra prioridad. Ofrecemos la mejor selección de monturas, lentes y servicios oftalmológicos con la más alta calidad y atención personalizada.
+        </p>
+        <div class="social-links mt-4">
+          <a href="#" class="text-white me-3" aria-label="Facebook">
+            <i class="bi bi-facebook fs-5"></i>
+          </a>
+          <a href="#" class="text-white me-3" aria-label="Instagram">
+            <i class="bi bi-instagram fs-5"></i>
+          </a>
+          <a href="#" class="text-white me-3" aria-label="Twitter">
+            <i class="bi bi-twitter fs-5"></i>
+          </a>
+          <a href="https://wa.me/57XXXXXXXXXX" class="text-white" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp fs-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Enlaces rápidos -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="text-uppercase fw-bold mb-4">Enlaces</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="/" class="text-decoration-none text-muted hover-white">Inicio</a>
+          </li>
+          <li class="mb-2">
+            <a href="/catalogo" class="text-decoration-none text-muted hover-white">Catálogo</a>
+          </li>
+          <li class="mb-2">
+            <a href="/servicios" class="text-decoration-none text-muted hover-white">Servicios</a>
+          </li>
+          <li class="mb-2">
+            <a href="/nosotros" class="text-decoration-none text-muted hover-white">Nosotros</a>
+          </li>
+          <li>
+            <a href="/contacto" class="text-decoration-none text-muted hover-white">Contacto</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-uppercase fw-bold mb-4">Contacto</h5>
+        <ul class="list-unstyled text-muted">
+          <li class="mb-3 d-flex">
+            <i class="bi bi-geo-alt-fill me-3 mt-1"></i>
+            <span>Calle Falsa 123, Ciudad, País</span>
+          </li>
+          <li class="mb-3 d-flex">
+            <i class="bi bi-telephone-fill me-3"></i>
+            <span>(123) 456-7890</span>
+          </li>
+          <li class="mb-3 d-flex">
+            <i class="bi bi-envelope-fill me-3"></i>
+            <span>contacto@opticaurban.com</span>
+          </li>
+          <li class="d-flex">
+            <i class="bi bi-clock-fill me-3"></i>
+            <div>
+              <div>Lun-Vie: 9:00 AM - 7:00 PM</div>
+              <div>Sábado: 9:00 AM - 2:00 PM</div>
+              <div>Domingo: Cerrado</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Boletín informativo -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="text-uppercase fw-bold mb-4">Newsletter</h5>
+        <p class="text-muted">Suscríbete para recibir ofertas y novedades.</p>
+        <form class="mb-3">
+          <div class="input-group">
+            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Tu correo" aria-label="Correo electrónico" required>
+            <button class="btn btn-primary" type="submit">
+              <i class="bi bi-send"></i>
+            </button>
+          </div>
+        </form>
+        <div class="payment-methods">
+          <p class="mb-2">Métodos de pago:</p>
+          <div class="d-flex flex-wrap gap-2">
+            <i class="bi bi-credit-card-2-back-fill fs-4" title="Tarjeta de crédito"></i>
+            <i class="bi bi-paypal fs-4" title="PayPal"></i>
+            <i class="bi bi-cash-coin fs-4" title="Efectivo"></i>
+            <i class="bi bi-bank fs-4" title="Transferencia bancaria"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4 border-secondary">
+
+    <!-- Copyright y enlaces legales -->
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <small class="text-muted">
+          &copy; {{ year }} Óptica Urban. Todos los derechos reservados.
+        </small>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item">
+            <a href="#" class="text-decoration-none text-muted hover-white">Términos de servicio</a>
+          </li>
+          <li class="list-inline-item">
+            <span class="text-muted">|</span>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="text-decoration-none text-muted hover-white">Política de privacidad</a>
+          </li>
+          <li class="list-inline-item">
+            <span class="text-muted">|</span>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="text-decoration-none text-muted hover-white">Política de cookies</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
