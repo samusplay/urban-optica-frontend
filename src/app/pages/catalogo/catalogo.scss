@@ -1,0 +1,68 @@
+// Estilo para el título
+.titulo-catalogo {
+  font-weight: 700;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// Personalización de la tarjeta
+.product-card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+
+  // Efecto al pasar el mouse (Hover)
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+  }
+}
+
+// Control estricto de la imagen
+.img-wrapper {
+  height: 200px;        // Altura fija para todas las fotos
+  overflow: hidden;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; // Fondo gris claro detrás de la foto
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain; // La imagen se ajusta sin cortarse ni estirarse
+    transition: transform 0.3s ease;
+  }
+}
+
+// Pequeño zoom a la imagen al hacer hover en la tarjeta
+.product-card:hover .img-wrapper img {
+  transform: scale(1.05);
+}
+
+// Estilo del precio
+.price-tag {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #27ae60; // Verde dinero
+  margin-bottom: 15px;
+}
+
+// Botón personalizado
+.btn-detalle {
+  background-color: #34495e;
+  border: none;
+  font-weight: 500;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: #2c3e50; // Un poco más oscuro
+  }
+}
