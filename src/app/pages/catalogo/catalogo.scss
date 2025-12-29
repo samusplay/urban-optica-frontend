@@ -1,68 +1,120 @@
-// Estilo para el título
+// Variables
+$text-dark: #1a1a1a;
+$accent-blue: #0066ff;
+$bg-soft: #f9f9f9;
+
 .titulo-catalogo {
-  font-weight: 700;
-  color: #2c3e50;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: $text-dark;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
 }
 
-// Personalización de la tarjeta
 .product-card {
-  border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 12px;
-  overflow: hidden;
-  background: white;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
 
-  // Efecto al pasar el mouse (Hover)
+  // 1. EL CONTENEDOR DE LA IMAGEN
+  .img-container {
+    background-color: $bg-soft;
+    border-radius: 20px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+
+    img {
+      max-height: 100%;
+      object-fit: contain;
+      transition: all 0.5s ease;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+    }
+
+    .badge-overlay {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    .view-more {
+      position: absolute;
+      bottom: -50px; // Escondido abajo
+      background: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      padding: 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  // 2. TEXTOS ABAJO
+  .product-info {
+    padding: 20px 10px;
+
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-price {
+      font-size: 1rem;
+      color: $accent-blue;
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  // 3. EFECTOS HOVER
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+    .img-container {
+      background-color: #ebeef1;
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+
+      img {
+        transform: scale(1.1);
+      }
+
+      .view-more {
+        bottom: 0; // Sube al hacer hover
+      }
+    }
+
+    .product-name {
+      color: $accent-blue;
+    }
   }
 }
 
-// Control estricto de la imagen
-.img-wrapper {
-  height: 200px;        // Altura fija para todas las fotos
-  overflow: hidden;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f8f9fa; // Fondo gris claro detrás de la foto
-
-  img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain; // La imagen se ajusta sin cortarse ni estirarse
-    transition: transform 0.3s ease;
+// Responsivo para móviles
+@media (max-width: 576px) {
+  .img-container {
+    height: 250px;
   }
-}
-
-// Pequeño zoom a la imagen al hacer hover en la tarjeta
-.product-card:hover .img-wrapper img {
-  transform: scale(1.05);
-}
-
-// Estilo del precio
-.price-tag {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #27ae60; // Verde dinero
-  margin-bottom: 15px;
-}
-
-// Botón personalizado
-.btn-detalle {
-  background-color: #34495e;
-  border: none;
-  font-weight: 500;
-  padding: 10px;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-
-  &:hover {
-    background-color: #2c3e50; // Un poco más oscuro
+  .titulo-catalogo {
+    font-size: 1.8rem;
   }
 }

@@ -1,64 +1,64 @@
 <div class="container-xl mt-5 mb-5">
-  <div *ngIf="loading" class="loading-state">
-    <div class="spinner-border text-primary" role="status"></div>
-    <p>Preparando tu vista...</p>
-  </div>
-
-  <div *ngIf="!loading && product" class="product-wrapper shadow-lg">
-    <div class="row g-0">
-      
-      <div class="col-lg-7 image-section">
-        <div class="badge-new">Colección 2025</div>
-        <img [src]="product.imagenKey" [alt]="product.nombre" class="main-product-img">
-      </div>
-
-      <div class="col-lg-5 info-section">
-        <div class="info-content">
-          <nav class="breadcrumb-nav">
-            <span routerLink="/catalogo">Catálogo</span> / <span>Lentes</span>
-          </nav>
-
-          <h1 class="product-title">{{ product.nombre }}</h1>
-          
-          <div class="price-container">
-            <span class="currency">$</span>
-            <span class="amount">{{ product.precio | number:'1.0-0' }}</span>
-          </div>
-
-          <div class="description-box">
-            <p>{{ product.descripcion }}</p>
-          </div>
-
-          <div class="future-feature">
-            <div class="d-flex align-items-center gap-2">
-              <i class="fa fa-file-medical text-primary"></i>
-              <span>Personalización con fórmula médica disponible en el carrito.</span>
-            </div>
-          </div>
-
-          <div class="action-area">
-            <button class="btn-add-cart">
-              <span>Añadir al Carrito</span>
-              <i class="fa fa-shopping-bag"></i>
-            </button>
-            
-            <button routerLink="/catalogo" class="btn-back">
-              <i class="fa fa-arrow-left"></i> Explorar otros modelos
-            </button>
-          </div>
-          
-          <div class="trust-indicators">
-            <span><i class="fa fa-truck"></i> Envío Gratis</span>
-            <span><i class="fa fa-shield-alt"></i> Garantía 12 meses</span>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="loading" class="loading-state">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p>Preparando tu vista...</p>
     </div>
-  </div>
 
-  <div *ngIf="!loading && !product" class="error-state text-center">
-    <i class="fa fa-search fa-3x mb-3 text-muted"></i>
-    <h3>Lo sentimos, no encontramos ese modelo</h3>
-    <button routerLink="/catalogo" class="btn btn-dark mt-3 px-4">Volver al catálogo</button>
-  </div>
+    <div *ngIf="!loading && product" class="product-wrapper shadow-lg">
+        <div class="row g-0">
+
+            <div class="col-lg-7 image-section">
+                <div class="badge-new">Colección 2025</div>
+                <img [src]="product.imagenKey" [alt]="product.nombre" class="main-product-img">
+            </div>
+
+            <div class="col-lg-5 info-section">
+                <div class="info-content">
+                    <nav class="breadcrumb-nav">
+                        <span routerLink="/catalogo">Catálogo</span> / <span>Lentes</span>
+                    </nav>
+
+                    <h1 class="product-title">{{ product.nombre }}</h1>
+
+                    <div class="price-container">
+                        <span class="currency">$</span>
+                        <span class="amount">{{ product.precio | number:'1.0-0' }}</span>
+                    </div>
+
+                    <div class="description-box">
+                        <p>{{ product.descripcion }}</p>
+                    </div>
+
+                    <div class="future-feature">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fa fa-file-medical text-primary"></i>
+                            <span>Personalización con fórmula médica disponible en el carrito.</span>
+                        </div>
+                    </div>
+
+                    <div class="action-area">
+                        <button class="btn-add-cart">
+                            <span>Añadir al Carrito</span>
+                            <i class="fa fa-shopping-bag"></i>
+                        </button>
+
+                        <button routerLink="/catalogo" class="btn-back">
+                            <i class="fa fa-arrow-left"></i> Explorar otros modelos
+                        </button>
+                    </div>
+
+                    <div class="trust-indicators">
+                        <span><i class="fa fa-truck"></i> Envío Gratis</span>
+                        <span><i class="fa fa-shield-alt"></i> Garantía 12 meses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && !product" class="error-state text-center">
+        <i class="fa fa-search fa-3x mb-3 text-muted"></i>
+        <h3>Lo sentimos, no encontramos ese modelo</h3>
+        <button routerLink="/catalogo" class="btn btn-dark mt-3 px-4">Volver al catálogo</button>
+    </div>
 </div>
