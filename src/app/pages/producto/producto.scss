@@ -1,0 +1,151 @@
+// Variables de diseño
+$primary-color: #1a1a1a; // Negro elegante
+$accent-color: #0066ff;  // Azul óptico
+$bg-light: #fdfdfd;
+
+.container-xl {
+  max-width: 1250px; // Más ancho para PC
+}
+
+.product-wrapper {
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+// SECCIÓN IMAGEN
+.image-section {
+  background-color: #f1f4f6; // Gris azulado muy suave
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  position: relative;
+  min-height: 550px;
+
+  .badge-new {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .main-product-img {
+    max-width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.12));
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+      transform: scale(1.1) rotate(-2deg);
+    }
+  }
+}
+
+// SECCIÓN INFORMACIÓN
+.info-section {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .breadcrumb-nav {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 15px;
+    span { cursor: pointer; &:hover { color: $accent-color; } }
+  }
+
+  .product-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: $primary-color;
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .price-container {
+    margin-bottom: 25px;
+    .currency { font-size: 1.5rem; vertical-align: top; color: $accent-color; font-weight: 600; }
+    .amount { font-size: 2.5rem; font-weight: 700; color: $accent-color; }
+  }
+
+  .description-box {
+    margin-bottom: 30px;
+    p { color: #666; line-height: 1.8; font-size: 1.1rem; }
+  }
+}
+
+// PLACEHOLDER PARA FÓRMULA
+.future-feature {
+  background: #f0f7ff;
+  border: 1px dashed $accent-color;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 35px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+// BOTONES
+.action-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .btn-add-cart {
+    background: $primary-color;
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $accent-color;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,102,255,0.2);
+    }
+  }
+
+  .btn-back {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 15px;
+    color: #777;
+    font-weight: 500;
+    transition: all 0.3s;
+    &:hover { background: #f8f8f8; color: $primary-color; }
+  }
+}
+
+// INDICADORES DE CONFIANZA
+.trust-indicators {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: #aaa;
+  i { margin-right: 5px; color: #27ae60; }
+}
+
+// RESPONSIVO
+@media (max-width: 992px) {
+  .image-section { min-height: 350px; padding: 40px; }
+  .info-section { padding: 40px; }
+  .product-title { font-size: 2.2rem; }
+}
