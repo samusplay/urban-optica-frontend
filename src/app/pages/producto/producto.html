@@ -1,4 +1,5 @@
 <div class="container-xl mt-5 mb-5">
+    
     <div *ngIf="loading" class="loading-state">
         <div class="spinner-border text-primary" role="status"></div>
         <p>Preparando tu vista...</p>
@@ -9,7 +10,12 @@
 
             <div class="col-lg-7 image-section">
                 <div class="badge-new">Colección 2025</div>
-                <img [src]="product.imagenKey" [alt]="product.nombre" class="main-product-img">
+                
+                <img 
+                    [src]="product.imagenKey | urlS3" 
+                    [alt]="product.nombre" 
+                    class="main-product-img"
+                >
             </div>
 
             <div class="col-lg-5 info-section">

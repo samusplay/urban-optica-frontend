@@ -4,12 +4,19 @@
     <p class="text-muted">Encuentra el marco perfecto para tu estilo y visión</p>
   </div>
 
-  <div class="row g-4"> <div class="col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let item of products">
+  <div class="row g-4"> 
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let item of products">
       
       <div class="product-card" (click)="viewProductDetail(item)">
         <div class="img-container">
           <div class="badge-overlay">Disponible</div>
-          <img [src]="item.imagenKey" [alt]="item.nombre" class="img-fluid">
+          
+          <img 
+            [src]="item.imagenKey | urlS3" 
+            [alt]="item.nombre" 
+            class="img-fluid" 
+            loading="lazy"
+          >
           
           <div class="view-more">
             <span>VER DETALLE</span>

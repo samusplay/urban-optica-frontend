@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from './services/product.service';
-import { ProductDetail } from './model/productdetail';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { UrlS3Pipe } from '../../pipes/url-s3-pipe';
+import { ProductDetail } from './model/productdetail';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-producto',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,UrlS3Pipe],
   templateUrl: './producto.html',
   styleUrl: './producto.scss',
 })
