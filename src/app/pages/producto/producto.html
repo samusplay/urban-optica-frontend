@@ -1,5 +1,5 @@
 <div class="container-xl mt-5 mb-5">
-    
+
     <div *ngIf="loading" class="loading-state">
         <div class="spinner-border text-primary" role="status"></div>
         <p>Preparando tu vista...</p>
@@ -10,12 +10,8 @@
 
             <div class="col-lg-7 image-section">
                 <div class="badge-new">Colección 2025</div>
-                
-                <img 
-                    [src]="product.imagenKey | urlS3" 
-                    [alt]="product.nombre" 
-                    class="main-product-img"
-                >
+
+                <img [src]="product.imagenKey | urlS3" [alt]="product.nombre" class="main-product-img">
             </div>
 
             <div class="col-lg-5 info-section">
@@ -35,20 +31,20 @@
                         <p>{{ product.descripcion }}</p>
                     </div>
 
-                    <div class="future-feature">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="fa fa-file-medical text-primary"></i>
-                            <span>Personalización con fórmula médica disponible en el carrito.</span>
-                        </div>
+                    <div class="mt-4 mb-4">
+                        <app-prescription-upload (prescriptionUploaded)="onPrescriptionAttached($event)">
+                        </app-prescription-upload>
                     </div>
 
                     <div class="action-area">
-                        <button class="btn-add-cart">
-                            <span>Añadir al Carrito</span>
-                            <i class="fa fa-shopping-bag"></i>
+                        <button class="btn-add-cart" (click)="addToCart()" [disabled]="!prescriptionId"
+                            [ngClass]="{'btn-disabled': !prescriptionId}">
+                            <span *ngIf="!prescriptionId">Adjunta tu fórmula para continuar</span>
+                            <span *ngIf="prescriptionId">Añadir al Carrito</span>
+                            <i [class]="prescriptionId ? 'fa fa-shopping-bag' : 'fa fa-lock'"></i>
                         </button>
 
-                        <button routerLink="/catalogo" class="btn-back">
+                        <button routerLink="/catalogo" class="btn-back mt-2">
                             <i class="fa fa-arrow-left"></i> Explorar otros modelos
                         </button>
                     </div>

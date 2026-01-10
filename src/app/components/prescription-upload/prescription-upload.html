@@ -1,0 +1,50 @@
+<div class="prescription-container p-3 border rounded shadow-sm bg-white mb-4">
+    <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+        <i class="fa fa-file-prescription text-primary fs-4"></i>
+        <h6 class="m-0 fw-bold text-secondary">Adjuntar Fórmula Médica</h6>
+    </div>
+
+    <div *ngIf="uploadSuccess" class="alert alert-success d-flex align-items-center animate__animated animate__fadeIn">
+        <i class="fa fa-check-circle me-2 fs-5"></i>
+        <div>
+            <strong>¡Fórmula lista!</strong> Ya puedes añadir al carrito.
+        </div>
+    </div>
+
+    <form *ngIf="!uploadSuccess" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="mb-3">
+            <label class="form-label small fw-semibold">Nombre del Paciente</label>
+            <input type="text" class="form-control form-control-sm" formControlName="paciente"
+                placeholder="Escribe el nombre completo"
+                [ngClass]="{'is-invalid': form.get('paciente')?.touched && form.get('paciente')?.invalid}">
+            <div class="invalid-feedback x-small">El nombre es obligatorio.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small fw-semibold">Archivo (PDF o Word)</label>
+            <input type="file" class="form-control form-control-sm" (change)="onFileChange($event)"
+                accept=".pdf,.doc,.docx" [ngClass]="{'is-invalid': form.get('fileSource')?.touched && !selectedFile}">
+            <div *ngIf="!selectedFile" class="invalid-feedback x-small">Debes seleccionar un archivo válido.</div>
+            <div class="form-text x-small text-muted">Asegúrate de que la fórmula sea legible.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small fw-semibold">Observaciones (Opcional)</label>
+            <textarea class="form-control form-control-sm" rows="2" formControlName="observaciones"
+                placeholder="Ej: Solo para ojo derecho, miopía..."
+                [ngClass]="{'is-invalid': form.get('observaciones')?.invalid}"></textarea>
+            <div class="invalid-feedback x-small">Máximo 500 caracteres.</div>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-sm d-flex align-items-center justify-content-center gap-2"
+                [disabled]="isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"></span>
+
+                <i *ngIf="!isLoading" class="fa fa-upload"></i>
+                <span>{{ isLoading ? 'Subiendo fórmula...' : 'Validar y Adjuntar' }}</span>
+            </button>
+        </div>
+    </form>
+</div>

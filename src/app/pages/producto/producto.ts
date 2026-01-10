@@ -4,11 +4,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UrlS3Pipe } from '../../pipes/url-s3-pipe';
 import { ProductDetail } from './model/productdetail';
 import { ProductService } from './services/product.service';
+import { PrescriptionUpload } from '../../components/prescription-upload/prescription-upload';
 
 @Component({
   selector: 'app-producto',
   standalone: true,
-  imports: [CommonModule, RouterLink,UrlS3Pipe],
+  imports: [CommonModule, RouterLink, UrlS3Pipe, PrescriptionUpload],
   templateUrl: './producto.html',
   styleUrl: './producto.scss',
 })
@@ -18,6 +19,10 @@ export class ProductoComponent implements OnInit {
   //Vamos guadar la informacion 
   product: ProductDetail | null = null;
   loading: boolean = true //Mostrar spinner
+
+  //variables para la formula
+  // Variable para guardar el ID que viene del hijo
+  prescriptionId: number | null = null;
 
   //constrcutor para Inyectar Dependencias
   constructor(
@@ -57,6 +62,18 @@ export class ProductoComponent implements OnInit {
       }
     });
 
+  }
+  // Método que recibe el ID
+  onPrescriptionAttached(id: number) {
+    this.prescriptionId = id;
+  }
+
+  //Metodo para añadir al carrito
+  addToCart() {
+    if (this.prescriptionId) {
+      // Lógica para enviar producto + prescriptionId al carrito
+      console.log('Enviando al carrito con fórmula:', this.prescriptionId);
+    }
   }
 
 

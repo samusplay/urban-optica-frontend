@@ -1,0 +1,132 @@
+// Variables locales
+$accent-color: #0066ff;
+$success-color: #28a745;
+$bg-form: #ffffff;
+$border-color: #e3e8ee;
+
+.prescription-container {
+  background-color: $bg-form;
+  border: 1px solid $border-color !important;
+  border-radius: 20px !important; // Más redondeado para un look moderno
+  padding: 1.5rem !important;
+  transition: all 0.3s ease;
+  
+  // Efecto sutil de profundidad
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03) !important;
+
+  &:hover {
+    border-color: rgba($accent-color, 0.3) !important;
+    box-shadow: 0 12px 30px rgba($accent-color, 0.08) !important;
+  }
+}
+
+// Icono y Título
+.fa-file-prescription {
+  filter: drop-shadow(0 2px 4px rgba($accent-color, 0.2));
+}
+
+h6 {
+  letter-spacing: -0.5px;
+  color: #334155 !important; // Un gris pizarra más profesional
+}
+
+// Inputs y Labels
+.form-label {
+  color: #64748b;
+  font-size: 0.75rem !important;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  border: 1.5px solid $border-color;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  background-color: #f8fafc;
+  transition: all 0.2s ease-in-out;
+
+  &::placeholder {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+  }
+
+  &:focus {
+    background-color: #fff;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 4px rgba($accent-color, 0.1);
+    outline: none;
+  }
+
+  // Estilo para el input de archivo
+  &[type="file"] {
+    background-color: #fff;
+    cursor: pointer;
+    line-height: 1.5;
+    
+    &::file-selector-button {
+      background-color: #e2e8f0;
+      color: #475569;
+      border: none;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      margin-right: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: background 0.2s;
+
+      &:hover {
+        background-color: #cbd5e1;
+      }
+    }
+  }
+}
+
+// Alerta de Éxito
+.alert-success {
+  background-color: #f0fff4;
+  border: 1px solid #c6f6d5;
+  color: #22543d;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  padding: 1rem;
+
+  i {
+    color: $success-color;
+  }
+}
+
+// Botón de Envío
+.btn-primary {
+  background: linear-gradient(135deg, $accent-color, darken($accent-color, 5%));
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba($accent-color, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba($accent-color, 0.3);
+    background: linear-gradient(135deg, lighten($accent-color, 5%), $accent-color);
+  }
+
+  &:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    box-shadow: none;
+  }
+}
+
+// Clases de utilidad
+.x-small {
+  font-size: 0.7rem;
+  margin-top: 0.25rem;
+}
+
+.invalid-feedback {
+  font-weight: 500;
+}

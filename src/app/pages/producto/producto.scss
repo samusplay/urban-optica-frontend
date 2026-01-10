@@ -149,3 +149,23 @@ $bg-light: #fdfdfd;
   .info-section { padding: 40px; }
   .product-title { font-size: 2.2rem; }
 }
+.btn-add-cart {
+  // Estilo cuando está habilitado
+  background-color: #007bff;
+  color: white;
+  transition: all 0.3s ease;
+  
+  &:disabled {
+    background-color: #e9ecef; // Gris claro
+    border-color: #dee2e6;
+    color: #adb5bd; // Texto gris
+    cursor: not-allowed; // Cambia el puntero a "prohibido"
+    filter: grayscale(1);
+    opacity: 0.7;
+  }
+}
+
+.btn-disabled {
+  // Clase extra por si quieres forzar estilos
+  pointer-events: none;
+}
