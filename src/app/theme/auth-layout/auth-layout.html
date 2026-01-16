@@ -1,0 +1,25 @@
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #e6f0ff 0%, #b3d4ff 100%);">
+  <div class="row justify-content-center w-100">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">  <!-- Aumenté ligeramente el ancho para breathing room -->
+      <div class="card border-0 rounded-4 overflow-hidden">  <!-- Rounded más suave, sin shadow-lg para minimalismo -->
+        <div class="card-header bg-primary text-white text-center py-3">
+          <h4 class="mb-0 font-weight-bold">Óptica Urbana</h4>  <!-- Logo/título con bold para impacto -->
+          <small class="text-light opacity-75">Empieza Ya!</small>  <!-- Opacidad para sutileza -->
+        </div>
+        <div class="card-body p-4 p-md-5 bg-white">
+          <router-outlet></router-outlet>  <!-- Menos énfasis: Padding equilibrado, fondo blanco puro -->
+        </div>
+        <div class="card-footer text-center py-3 bg-transparent border-top">  <!-- Bg-transparent para integración fluida -->
+          <small class="text-muted d-flex justify-content-center gap-3 flex-wrap">
+            <a href="/auth/register" class="text-primary text-decoration-none" *ngIf="isLoginRoute()">¿No tienes cuenta? Regístrate</a>
+            <a href="/auth/login" class="text-primary text-decoration-none" *ngIf="!isLoginRoute()">¿Ya tienes cuenta? Inicia sesión</a>
+            <span class="text-secondary">|</span>
+            <a href="/" class="text-secondary text-decoration-none">Volver al Inicio</a>
+            <span class="text-secondary">|</span>
+            <a href="/auth/forgot" class="text-secondary text-decoration-none">Olvidé mi contraseña</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
