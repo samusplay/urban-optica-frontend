@@ -1,0 +1,127 @@
+$primary-color: #2563eb;
+$text-main: #1e293b;
+$text-muted: #64748b;
+$error-color: #ef4444;
+$input-bg: #ffffff;
+$input-border: #e2e8f0;
+
+.register-inner {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.modern-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-floating-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-main;
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: $input-bg;
+    border: 1px solid $input-border;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: $text-main;
+
+    &::placeholder {
+      color: #cbd5e1;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 4px rgba($primary-color, 0.08);
+      transform: translateY(-1px);
+    }
+
+    &.is-invalid {
+      border-color: $error-color;
+      background-color: #fffafb;
+
+      &:focus {
+        box-shadow: 0 0 0 4px rgba($error-color, 0.08);
+      }
+    }
+  }
+
+  .input-info {
+    font-size: 0.75rem;
+    color: $text-muted;
+    padding-left: 0.25rem;
+  }
+
+  .error-text {
+    font-size: 0.8rem;
+    color: $error-color;
+    font-weight: 500;
+    padding-left: 0.25rem;
+    animation: shake 0.3s ease-in-out;
+  }
+}
+
+.btn-action {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  margin-top: 1rem;
+  box-shadow: 0 4px 6px -1px rgba($primary-color, 0.2);
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-color, 5%);
+    box-shadow: 0 10px 15px -3px rgba($primary-color, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Animaciones sutiles
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+// Ajuste para Bootstrap icons si no cargan perfecto
+.bi {
+  line-height: 1;
+  vertical-align: -0.125em;
+}

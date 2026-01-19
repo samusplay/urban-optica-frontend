@@ -1,1 +1,74 @@
-<p>register works!</p>
+<div class="register-inner">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="modern-form">
+    
+    <div class="form-floating-custom">
+      <label><i class="bi bi-person me-2"></i>Nombre Completo</label>
+      <input 
+        type="text" 
+        formControlName="nombre" 
+        placeholder="Juan Pérez"
+        [class.is-invalid]="f['nombre'].invalid && f['nombre'].touched"
+      >
+      @if (f['nombre'].invalid && f['nombre'].touched) {
+        <small class="error-text">Nombre requerido (mín. 2 letras)</small>
+      }
+    </div>
+
+    <div class="form-floating-custom">
+      <label><i class="bi bi-envelope me-2"></i>Correo Electrónico</label>
+      <input 
+        type="email" 
+        formControlName="email" 
+        placeholder="nombre&#64;ejemplo.com"
+        [class.is-invalid]="f['email'].invalid && f['email'].touched"
+      >
+      @if (f['email'].invalid && f['email'].touched) {
+        <small class="error-text">Ingresa un email válido</small>
+      }
+    </div>
+
+    <div class="form-floating-custom">
+      <label><i class="bi bi-telephone me-2"></i>Teléfono Móvil</label>
+      <input 
+        type="tel" 
+        formControlName="telefono" 
+        placeholder="+57 300 123 4567"
+        [class.is-invalid]="f['telefono'].invalid && f['telefono'].touched"
+      >
+      <div class="input-info">Usa el formato internacional (Ej: +57)</div>
+      
+      @if (f['telefono'].invalid && f['telefono'].touched) {
+        <div class="error-text">
+          @if (f['telefono'].hasError('pattern')) {
+            Formato: <b>+57</b> + 10 dígitos.
+          } @else {
+            El teléfono es obligatorio.
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-floating-custom">
+      <label><i class="bi bi-lock me-2"></i>Contraseña</label>
+      <input 
+        type="password" 
+        formControlName="password" 
+        placeholder="••••••••"
+        [class.is-invalid]="f['password'].invalid && f['password'].touched"
+      >
+      @if (f['password'].invalid && f['password'].touched) {
+        <small class="error-text">Mínimo 6 caracteres</small>
+      }
+    </div>
+
+    <button type="submit" class="btn-action" [disabled]="form.invalid || isLoading">
+      @if (isLoading) {
+        <span class="spinner-border spinner-border-sm me-2"></span> Procesando...
+      } @else {
+        <span>Crear mi cuenta</span>
+        <i class="bi bi-arrow-right ms-2"></i>
+      }
+    </button>
+
+  </form>
+</div>

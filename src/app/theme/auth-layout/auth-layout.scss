@@ -1,73 +1,129 @@
-// Estilos específicos para auth-layout
+// Paleta de Colores Profesional
+$primary: #2563eb;    // Azul moderno
+$secondary: #64748b;  // Gris azulado
+$bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+$card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
 
-// Estilos generales para profesionalismo
-:host {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;  // Tipografía moderna y limpia
-  line-height: 1.6;
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-gradient;
+  padding: 1.5rem;
 }
 
-.card {
+.auth-container {
+  width: 100%;
+  max-width: 480px;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: $card-shadow;
   overflow: hidden;
-  transition: transform 0.3s ease;  // Sutil lift on hover para interacción
-  &:hover {
-    transform: translateY(-5px);  // Efecto pro sin exagerar
-  }
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
-.card-header {
-  border-bottom: none;
-  h4 {
-    font-weight: 700;  // Bold más fuerte para branding
-    letter-spacing: 1px;  // Espaciado para elegancia
-    text-transform: uppercase;  // Uppercase para profesionalismo
-  }
-  small {
-    font-size: 0.85rem;  // Pequeño pero legible
-  }
-}
+.auth-header {
+  padding: 2.5rem 2rem 1rem;
+  text-align: center;
 
-.card-body {
-  background-color: #ffffff;  // Blanco puro, sin distracciones
-  border-radius: 0;  // Fluido con header/footer
-}
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
 
-.card-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);  // Divider sutil para separación pro
-  a {
-    transition: color 0.2s ease-in-out;  // Transición suave en color
-    &:hover {
-      color: #0056b3;  // Azul más oscuro para hover (ajusta a tu primary)
-      text-decoration: none;  // Sin underline, pero con color change
+    i {
+      font-size: 1.5rem;
+      color: $primary;
     }
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);  // Focus accessible
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #1e293b;
+      margin: 0;
     }
   }
-  .text-secondary {
-    color: #6c757d !important;  // Gris pro para secundarios
+
+  .subtitle {
+    color: $secondary;
+    font-size: 0.875rem;
+    font-weight: 500;
   }
 }
 
-// Responsive adjustments para profesionalismo en todos dispositivos
-@media (max-width: 576px) {
-  .card-body {
-    padding: 1.25rem !important;  // Padding reducido pero cómodo en mobile
+.auth-body {
+  padding: 1rem 2.5rem 2rem;
+}
+
+.auth-footer {
+  padding: 1.5rem 2.5rem;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  text-align: center;
+
+  .links-primary {
+    margin-bottom: 0.75rem;
+    a {
+      text-decoration: none;
+      color: #475569;
+      font-size: 0.9rem;
+      span {
+        color: $primary;
+        font-weight: 600;
+      }
+    }
   }
-  .card-footer {
-    small {
-      flex-direction: column;  // Stack links en mobile para legibilidad
-      gap: 0.5rem;
+
+  .links-secondary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    
+    a {
+      text-decoration: none;
+      color: $secondary;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+      
+      &:hover {
+        color: #1e293b;
+      }
+    }
+
+    .divider {
+      color: #cbd5e1;
+      font-size: 0.8rem;
     }
   }
 }
 
-// Animación sutil para carga (mejorada con easing)
-router-outlet + * {
-  animation: fadeIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);  // Easing pro para smoothness
+// Animaciones
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+// Ajustes Mobile
+@media (max-width: 480px) {
+  .auth-body {
+    padding: 1rem 1.5rem 2rem;
+  }
+  .auth-footer {
+    padding: 1.5rem 1.5rem;
+  }
 }
