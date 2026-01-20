@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-import { toast } from 'ngx-sonner';
+import Swal from 'sweetalert2'; // <--- Usamos SweetAlert por consistencia
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -35,26 +35,66 @@ export class RegisterComponent {
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      toast.warning('Completa todos los campos correctamente');
+      // ⚠️ Alerta visual si faltan datos
+      Swal.fire({
+        icon: 'warning',
+        title: 'Formulario incompleto',
+        text: 'Por favor completa todos los campos correctamente.',
+        confirmButtonColor: '#2563eb'
+      });
       return;
     }
 
     this.isLoading = true;
-    const toastId = toast.loading('Creando tu cuenta...');
+    
+    // ⏳ Modal de carga
+    Swal.fire({
+      title: 'Creando tu cuenta...',
+      text: 'Estamos registrando tus datos',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
 
     const registerData = this.form.value;  // teléfono ya viene formateado
 
     this.authService.register(registerData).subscribe({
       next: () => {
         this.isLoading = false;
-        toast.dismiss(toastId);
-        toast.success('¡Registro exitoso!');
-        this.router.navigate(['/home']);
+        
+        // ⬇️⬇️⬇️ MAGIA: Reseteamos y quitamos "lo rojo"
+        this.form.reset();
+        Object.keys(this.form.controls).forEach(key => {
+          const control = this.form.get(key);
+          control?.setErrors(null);      // Quita error interno
+          control?.markAsPristine();     // Marca como "no sucio"
+          control?.markAsUntouched();    // Marca como "no tocado" (Quita borde rojo)
+        });
+
+        // ✅ Éxito y redirección
+        Swal.fire({
+          icon: 'success',
+          title: '¡Registro exitoso!',
+          text: 'Bienvenido a Óptica Urbana',
+          timer: 2000,
+          showConfirmButton: false
+        }).then(() => {
+          this.router.navigate(['/home']);
+        });
       },
       error: (err) => {
         this.isLoading = false;
-        toast.dismiss(toastId);
-        toast.error(err.message || 'Error al registrar');
+        
+        // Manejo de error robusto
+        const msg = err.error?.message || 'No se pudo registrar el usuario';
+        
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el registro',
+          text: msg,
+          confirmButtonColor: '#d33'
+        });
       }
     });
   }

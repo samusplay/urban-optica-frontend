@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
-import { BackendService } from '../../../../services/backend.service';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { RegisterRequest } from '../model/RegisterRequest';
-import { AuthResponse } from '../model/AuthResponse';
-import { LoginRequest } from '../model/LoginRequest';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, catchError, Observable, tap, throwError } from "rxjs";
+import { BackendService } from "../../../../services/backend.service";
+import { AuthResponse } from "../model/AuthResponse";
+import { LoginRequest } from "../model/LoginRequest";
+import { RegisterRequest } from "../model/RegisterRequest";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService {
   private endpoint = "auth";
@@ -15,20 +14,21 @@ export class AuthService {
   //Verificar si hay token primero
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
 
-  //Escuchar todos los componentes 
+  //Escuchar todos los componentes
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
-  constructor(private readonly backend: BackendService) { }
 
- register(request: RegisterRequest): Observable<AuthResponse> {
+  constructor(private readonly backend: BackendService) {}
+
+  register(request: RegisterRequest): Observable<AuthResponse> {
     // CAMBIO CLAVE: Solo enviamos "auth/register"
-    const path = `${this.endpoint}/register`; 
-    
+    const path = `${this.endpoint}/register`;
+
     return this.backend.post<AuthResponse>(path, request).pipe(
-      tap(response => this.saveAuthData(response)),
-      catchError(err => {
-        console.error('Error en register:', err);
+      tap((response) => this.saveAuthData(response)),
+      catchError((err) => {
+        console.error("Error en register:", err);
         return throwError(() => err);
-      })
+      }),
     );
   }
 
@@ -37,11 +37,11 @@ export class AuthService {
     const path = `${this.endpoint}/login`;
 
     return this.backend.post<AuthResponse>(path, request).pipe(
-      tap(response => this.saveAuthData(response)),
-      catchError(err => {
-        console.error('Error en login:', err);
+      tap((response) => this.saveAuthData(response)),
+      catchError((err) => {
+        console.error("Error en login:", err);
         return throwError(() => err);
-      })
+      }),
     );
   }
 
@@ -50,10 +50,12 @@ export class AuthService {
    * Borra datos y grita "FALSE" por el noticiero.
    */
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userRole');
-    
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userRole");
+    //agregamos que cuando salga elimine el id
+    localStorage.removeItem("userId")
+
     // Avisamos a la app que se cerró la sesión
     this.isLoggedInSubject.next(false);
   }
@@ -69,34 +71,49 @@ export class AuthService {
    * HELPER: Obtener Rol (Para ocultar botones de admin en el HTML)
    */
   getUserRole(): string | null {
-    return localStorage.getItem('userRole');
+    return localStorage.getItem("userRole");
   }
-  
+
   /**
    * HELPER: Obtener Token (Para el Interceptor que haremos luego)
    */
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
+  }
+  /** Obtiene el nombre guardado para mostrarlo en formularios */
+  getUserName(): string | null {
+    return localStorage.getItem("userName");
+  }
+
+  /** Obtiene el ID para enviarlo en los POST de fórmulas */
+  getUserId(): string | null {
+    return localStorage.getItem("userId");
   }
 
   // --- MÉTODOS PRIVADOS ---
-
-  // Guarda en disco y actualiza el estado
   private saveAuthData(response: AuthResponse): void {
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('userName', response.nombre); // Asumiendo que tu DTO trae 'nombre'
-    localStorage.setItem('role', response.role);     // Asumiendo que tu DTO trae 'role'
     
-    // ¡Avisamos que ya estamos logueados!
+    // 1. Guardar Token
+    localStorage.setItem("token", response.token);
+
+    // 2. Guardar Datos Básicos (Directos, sin buscar dentro de 'user')
+    if (response.nombre) localStorage.setItem("userName", response.nombre);
+    if (response.role) localStorage.setItem("userRole", response.role);
+
+    // 3. Guardar ID (Sin miedo al éxito)
+    if (response.id) {
+        console.log('✅ Login: ID guardado ->', response.id);
+        localStorage.setItem("userId", response.id.toString());
+    } else {
+        console.error('❌ Login: El backend no envió el ID');
+    }
+
     this.isLoggedInSubject.next(true);
   }
 
+
   // Verifica si existe un token físico en el navegador
   private hasToken(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem("token");
   }
 }
-
-  
-  
-
