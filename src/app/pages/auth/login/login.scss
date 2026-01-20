@@ -1,0 +1,83 @@
+// Reutilizamos la estética del Registro para consistencia de marca
+$primary-color: #2563eb;
+$text-main: #1e293b;
+$error-color: #ef4444;
+
+.login-inner {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.modern-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-floating-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-main;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 4px rgba($primary-color, 0.08);
+    }
+
+    &.is-invalid {
+      border-color: $error-color;
+    }
+  }
+
+  .error-text {
+    font-size: 0.8rem;
+    color: $error-color;
+    font-weight: 500;
+  }
+}
+
+.btn-action {
+  width: 100%;
+  padding: 1rem;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px -1px rgba($primary-color, 0.2);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba($primary-color, 0.3);
+  }
+
+  &:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

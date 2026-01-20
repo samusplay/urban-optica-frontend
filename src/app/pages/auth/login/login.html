@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="login-inner">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="modern-form">
+    
+    <div class="form-floating-custom">
+      <label><i class="bi bi-envelope me-2"></i>Correo Electrónico</label>
+      <input 
+        type="email" 
+        formControlName="email" 
+        placeholder="nombre&#64;ejemplo.com"
+        [class.is-invalid]="f['email'].invalid && f['email'].touched"
+      >
+      @if (f['email'].invalid && f['email'].touched) {
+        <small class="error-text">Ingresa un correo válido</small>
+      }
+    </div>
+
+    <div class="form-floating-custom">
+      <label><i class="bi bi-lock me-2"></i>Contraseña</label>
+      <input 
+        type="password" 
+        formControlName="password" 
+        placeholder="••••••••"
+        [class.is-invalid]="f['password'].invalid && f['password'].touched"
+      >
+      @if (f['password'].invalid && f['password'].touched) {
+        <small class="error-text">La contraseña es obligatoria</small>
+      }
+    </div>
+
+    <button type="submit" class="btn-action" [disabled]="form.invalid || isLoading">
+      @if (isLoading) {
+        <span class="spinner-border spinner-border-sm me-2"></span> Entrando...
+      } @else {
+        <span>Iniciar Sesión</span>
+        <i class="bi bi-box-arrow-in-right ms-2"></i>
+      }
+    </button>
+
+  </form>
+</div>

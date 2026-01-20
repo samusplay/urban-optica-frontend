@@ -16,7 +16,7 @@
       <div class="auth-footer">
         <div class="links-primary">
           @if (isLoginRoute()) {
-            <a routerLink="/auth/register">¿No tienes cuenta? <span>Regístrate</span></a>
+            <a [routerLink]="['/auth/register']">¿No tienes cuenta? <span>Regístrate</span></a>
           } @else {
             <a routerLink="/auth/login">¿Ya tienes cuenta? <span>Inicia sesión</span></a>
           }
