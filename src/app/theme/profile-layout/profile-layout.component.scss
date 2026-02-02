@@ -1,0 +1,246 @@
+// Variables (Tu paleta)
+$primary: #2563eb;
+$primary-light: #eff6ff; // Fondo suave para items activos
+$secondary: #64748b;
+$bg-color: #f8fafc;
+$sidebar-width: 280px;
+$card-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: $bg-color;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+// --- SIDEBAR ---
+.sidebar {
+  width: $sidebar-width;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e2e8f0;
+  box-shadow: $card-shadow;
+  transition: transform 0.3s ease;
+  z-index: 20;
+
+  // 1. ESTILO DE LA FOTO DE USUARIO
+  .user-profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    background: linear-gradient(to bottom, #ffffff, #fafbfc);
+
+    .avatar-container {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1rem;
+      position: relative;
+      
+      .avatar-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); // Sombra azulada
+      }
+
+      .avatar-fallback {
+        width: 100%;
+        height: 100%;
+        background: $primary;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    .user-name {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .user-role {
+      font-size: 0.85rem;
+      color: $secondary;
+      margin-top: 0.25rem;
+    }
+  }
+
+  // 2. NAVEGACIÓN
+  .sidebar-nav {
+    flex: 1;
+    padding: 1.5rem 1rem;
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+
+      &.separator {
+        height: 1px;
+        background: #f1f5f9;
+        margin: 1rem 0;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 0.85rem 1rem;
+        color: $secondary;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        .icon {
+          margin-right: 12px;
+          font-style: normal;
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          background-color: #f8fafc;
+          color: $primary;
+        }
+
+        &.active {
+          background-color: $primary-light;
+          color: $primary;
+          font-weight: 600;
+          
+          .icon {
+            transform: scale(1.1); // Pequeño efecto pop
+          }
+        }
+      }
+    }
+  }
+
+  .sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+
+    .logout-btn {
+      width: 100%;
+      border: none;
+      background: none;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      cursor: pointer;
+      font-weight: 500;
+      border-radius: 8px;
+      
+      &:hover {
+        background-color: #fef2f2;
+      }
+    }
+  }
+}
+
+// --- MAIN CONTENT ---
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  
+  .content-wrapper {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .mobile-toggle {
+    display: none; // Oculto en escritorio
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 30;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+}
+
+// --- RESPONSIVE (Móvil) ---
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: absolute;
+    height: 100%;
+    transform: translateX(0);
+    
+    &.closed {
+      transform: translateX(-100%); // Se esconde a la izquierda
+    }
+  }
+
+  .main-content .mobile-toggle {
+    display: block; // Visible en móvil
+  }
+}
+
+
+// En tu archivo .scss
+.sidebar-nav {
+  // ... resto de estilos
+  li a {
+    // ... estilos del enlace
+    
+    .icon {
+      margin-right: 12px;
+      font-size: 1.25rem; // Tamaño ligeramente más grande que el texto
+      vertical-align: middle;
+      transition: transform 0.2s ease; // Animación suave
+    }
+
+    &:hover .icon {
+      color: $primary; // Se ilumina al pasar el mouse
+    }
+
+    &.active .icon {
+       // Efecto de "pop" sutil cuando está activo
+       transform: scale(1.1); 
+    }
+  }
+}
+
+// Para el botón de salir
+.logout-btn {
+  .icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+  }
+}
+
+// Para el fallback del avatar (si no hay foto)
+.avatar-fallback {
+  // ... tus estilos anteriores
+  i {
+    font-size: 2.5rem; // Icono grande dentro del círculo
+  }
+}

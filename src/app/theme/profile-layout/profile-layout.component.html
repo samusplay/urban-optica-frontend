@@ -1,0 +1,67 @@
+<div class="dashboard-container">
+  
+  <aside class="sidebar" [class.closed]="!isSidebarOpen()">
+    
+    <div class="user-profile-section">
+      <div class="avatar-container">
+        <img src="assets/default-avatar.png" alt="Foto Usuario" class="avatar-img" onerror="this.style.display='none'">
+        <div class="avatar-fallback">
+           <i class="bi bi-person-fill"></i>
+        </div> 
+      </div>
+      <h3 class="user-name">Nombre Usuario</h3>
+      <span class="user-role">CLIENTE</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a routerLink="pedidos" routerLinkActive="active">
+            <i class="bi bi-box-seam icon"></i>
+            <span>Pedidos</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="formulas" routerLinkActive="active">
+            <i class="bi bi-file-earmark-medical icon"></i>
+            <span>Fórmulas</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="pagos" routerLinkActive="active">
+            <i class="bi bi-credit-card icon"></i>
+            <span>Pagos</span>
+          </a>
+        </li>
+        
+        <li class="separator"></li> 
+        
+        <li>
+          <a routerLink="profile" routerLinkActive="active">
+            <i class="bi bi-person-circle icon"></i>
+            <span>Mi Cuenta</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn">
+        <i class="bi bi-box-arrow-right icon"></i> 
+        <span>Salir</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    
+    <button class="mobile-toggle" (click)="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+</div>

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { PublicLayout } from './theme/public-layout/public-layout';
 import { AuthLayout } from './theme/auth-layout/auth-layout';
+import { ProfileLayoutComponent } from './theme/profile-layout/profile-layout.component';
+import { PublicLayout } from './theme/public-layout/public-layout';
 export const routes: Routes = [
    {
     path: '',
@@ -22,5 +23,17 @@ export const routes: Routes = [
 
     ]
   },
+  {
+    path:'dashboard',
+    component:ProfileLayoutComponent,
+    children:[
+      {path:'profile',loadComponent:()=>import('./pages/profile-user/profile-user.component').then(m=>m.ProfileUserComponent)},
+      {path:'pedidos',loadComponent:()=>import('./pages/pedidos/pedidos.component').then(m=>m.PedidosComponent)},
+      {path:'formulas',loadComponent:()=>import('./pages/formulas/formulas.component').then(m=>m.FormulasComponent)},
+      {path:'pagos',loadComponent:()=>import('./pages/pagos/pagos.component').then(m=>m.PagosComponent)},
+
+    ]
+  },
+
   { path: '**', redirectTo: '' },
 ];
