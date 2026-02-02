@@ -61,27 +61,47 @@ export class RegisterComponent {
 
     this.authService.register(registerData).subscribe({
       next: () => {
-        this.isLoading = false;
-        
-        // ⬇️⬇️⬇️ MAGIA: Reseteamos y quitamos "lo rojo"
-        this.form.reset();
-        Object.keys(this.form.controls).forEach(key => {
-          const control = this.form.get(key);
-          control?.setErrors(null);      // Quita error interno
-          control?.markAsPristine();     // Marca como "no sucio"
-          control?.markAsUntouched();    // Marca como "no tocado" (Quita borde rojo)
-        });
+       //prepara datos para el login automatico
+       const credenciales={
+        email:this.form.value.email,
+        password:this.form.value.password
+       }
+       //llamamos al login 
+       this.authService.login(credenciales).subscribe({
+        next:()=>{
+          Swal.close(); // Cerramos el spinner de "Cargando..."
 
-        // ✅ Éxito y redirección
-        Swal.fire({
-          icon: 'success',
-          title: '¡Registro exitoso!',
-          text: 'Bienvenido a Óptica Urbana',
-          timer: 2000,
-          showConfirmButton: false
-        }).then(() => {
-          this.router.navigate(['/home']);
-        });
+          // ✅ MODAL DE BIENVENIDA (Centrado, no Toast)
+          Swal.fire({
+            icon: 'success',
+            title: '¡Registro exitoso!',
+            text: `Bienvenido a la plataforma, ${this.form.value.nombre}. Entrando...`,
+            timer: 2000,              // Se queda 2 segundos para que lean
+            showConfirmButton: false, // Sin botón para que sea fluido
+            allowOutsideClick: false  // Evita que lo cierren antes de tiempo
+          }).then(() => {
+            // 🚀 Cuando termina el tiempo, nos vamos al dashboard
+            this.router.navigate(['/dashboard']);
+          });
+        },
+        error:(err)=>{
+          console.warn('Auto-login falló:', err); // Para depurar
+
+          // ⚠️ ATENCIÓN: Usamos 'warning' porque la cuenta SÍ se creó
+          Swal.fire({
+            icon: 'warning',
+            title: 'Cuenta creada',
+            text: 'Tu registro fue exitoso, pero hubo un problema al iniciar sesión automáticamente. Por favor ingresa manualmente.',
+            confirmButtonText: 'Ir al Login',
+            confirmButtonColor: '#2563eb',
+            allowOutsideClick: false
+          }).then(() => {
+            // Los mandamos al login para que escriban su clave
+            this.router.navigate(['/login']);
+          });
+
+        }
+       })
       },
       error: (err) => {
         this.isLoading = false;

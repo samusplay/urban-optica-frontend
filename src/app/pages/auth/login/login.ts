@@ -80,7 +80,7 @@ export class LoginComponent {
           showConfirmButton: false
         }).then(() => {
           // Redirigimos AUTOMÁTICAMENTE cuando se cierra la alerta
-          this.router.navigateByUrl(this.returnUrl);
+           this.router.navigate(['/dashboard']);
         });
       },
       error: (err) => {

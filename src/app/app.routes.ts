@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 import { AuthLayout } from './theme/auth-layout/auth-layout';
 import { ProfileLayoutComponent } from './theme/profile-layout/profile-layout.component';
 import { PublicLayout } from './theme/public-layout/public-layout';
@@ -26,6 +27,7 @@ export const routes: Routes = [
   {
     path:'dashboard',
     component:ProfileLayoutComponent,
+    canActivate: [authGuard],
     children:[
       {path:'profile',loadComponent:()=>import('./pages/profile-user/profile-user.component').then(m=>m.ProfileUserComponent)},
       {path:'pedidos',loadComponent:()=>import('./pages/pedidos/pedidos.component').then(m=>m.PedidosComponent)},
