@@ -37,6 +37,7 @@ export class CatalogoComponent {
     },
       error: (err) => {
         console.error("Error al cargar el catalogo", err)
+        
       }
     })
   }

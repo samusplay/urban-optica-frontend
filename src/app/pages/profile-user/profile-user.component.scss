@@ -1,0 +1,98 @@
+// Variables
+$primary: #2563eb;
+$primary-light: #eff6ff;
+$secondary: #64748b;
+$bg-color: #f8fafc;
+$card-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
+
+.profile-dashboard {
+  background-color: $bg-color;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+
+  .letter-spacing {
+    letter-spacing: 0.5px;
+  }
+
+  // Tarjetas
+  .card {
+    border-radius: 1.25rem;
+    box-shadow: $card-shadow;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  // Estilos de Avatar
+  .avatar-wrapper {
+    position: relative;
+    width: 140px;
+    margin: 0 auto;
+
+    .profile-avatar {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #fff;
+    }
+
+    .btn-edit-photo {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: $primary;
+      color: white;
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+
+      &:hover {
+        background: darken($primary, 10%);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  // Iconos Decorativos
+  .icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Colores Especiales
+  .bg-primary-light {
+    background-color: $primary-light;
+  }
+
+  // Breadcrumbs
+  .breadcrumb-item {
+    font-size: 0.85rem;
+    a {
+      text-decoration: none;
+      color: $secondary;
+      &:hover { color: $primary; }
+    }
+  }
+}
+
+// Animación de entrada suave
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.profile-card, .info-card {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
