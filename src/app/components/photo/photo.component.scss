@@ -1,0 +1,19 @@
+.photo-upload {
+  display: flex;
+  justify-content: center;
+}
+
+.upload-btn {
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}

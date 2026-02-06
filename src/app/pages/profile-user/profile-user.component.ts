@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import { PhotoComponent } from '../../components/photo/photo.component';
 import { UserResponse } from './models/UserResponseDto';
 import { ServiceProfile } from './service/serviceprofile.service';
 
 @Component({
   selector: 'app-profile-user',
   standalone:true,
-  imports: [CommonModule],
+  imports: [CommonModule,PhotoComponent],
   templateUrl: './profile-user.component.html',
   styleUrl: './profile-user.component.scss'
 })
@@ -25,7 +26,6 @@ export class ProfileUserComponent {
   public userQuery = injectQuery(()=>({
     queryKey: ['user-info'],
     queryFn: () => this.GetUserInfo(),
-    retry: 2
   }))
 
  

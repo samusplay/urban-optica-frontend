@@ -3,14 +3,21 @@
   <aside class="sidebar" [class.closed]="!isSidebarOpen()">
 
     <div class="user-profile-section">
+      @if (userQuery.data(); as user) {
       <div class="avatar-container">
-        <img src="assets/default-avatar.png" alt="Foto Usuario" class="avatar-img" onerror="this.style.display='none'">
-        <div class="avatar-fallback">
-          <i class="bi bi-person-fill"></i>
-        </div>
+        <img class="avatar-img" [class.loaded]="userQuery.data()"
+          [src]="userQuery.data()?.photoUrl || 'assets/default-avatar.png'"
+          [alt]="userQuery.data()?.nombre || 'Usuario'" />
+
+        <div class="avatar-skeleton" *ngIf="userQuery.isLoading()"></div>
       </div>
-      <h3 class="user-name">Nombre Usuario</h3>
+      <h3 class="user-name text-capitalize">{{ user.nombre }}</h3>
       <span class="user-role">CLIENTE</span>
+      }
+      @else if (userQuery.isLoading()) {
+      <div class="avatar-container skeleton-pulse"></div>
+      <div class="user-name-placeholder skeleton-pulse"></div>
+      }
     </div>
 
     <nav class="sidebar-nav">

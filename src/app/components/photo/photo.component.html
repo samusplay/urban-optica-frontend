@@ -1,1 +1,15 @@
-<p>photo works!</p>
+<div class="photo-upload">
+
+  <!-- Botón visual -->
+  <label class="upload-btn">
+    <input
+      type="file"
+      accept="image/*"
+      hidden
+      (change)="onFileSelected($event)"
+    />
+    Cambiar foto
+  </label>
+
+</div>
+
