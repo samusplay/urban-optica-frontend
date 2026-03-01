@@ -166,3 +166,36 @@
     transform: scale(0.98);  // Efecto click amigable
   }
 }
+
+/* ===== Dropdown de usuario (Angular controlled) ===== */
+.nav-item {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  min-width: 180px;
+  z-index: 1050;
+
+  display: block; // IMPORTANTE
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-menu {
+  animation: fadeDown 0.15s ease-out;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
