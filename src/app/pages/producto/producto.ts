@@ -1,10 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { UrlS3Pipe } from '../../pipes/url-s3-pipe';
-import { ProductDetail } from './model/productdetail';
-import { ProductService } from './services/product.service';
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { lastValueFrom } from 'rxjs';
+import Swal from 'sweetalert2';
 import { PrescriptionUpload } from '../../components/prescription-upload/prescription-upload';
+import { CartSignalService } from '../../core/interceptors/signals/cart.signal';
+import { UrlS3Pipe } from '../../pipes/url-s3-pipe';
+import { CartItem } from '../carrito/models/CartItem';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-producto',
@@ -13,69 +17,55 @@ import { PrescriptionUpload } from '../../components/prescription-upload/prescri
   templateUrl: './producto.html',
   styleUrl: './producto.scss',
 })
-export class ProductoComponent implements OnInit {
+export class ProductoComponent  {
+  //refactorizacion
+  private route=inject(ActivatedRoute)
+  private productService=inject(ProductService)
+  public cartSignal=inject(CartSignalService)
 
-  //variables para la vista
-  //Vamos guadar la informacion 
-  product: ProductDetail | null = null;
-  loading: boolean = true //Mostrar spinner
+  //ID URL
+  private productId=Number(this.route.snapshot.paramMap.get('id'))
 
-  //variables para la formula
-  // Variable para guardar el ID que viene del hijo
-  prescriptionId: number | null = null;
+  //query
+  productQuery=injectQuery(()=>({
+    queryKey:['product-detail',this.productId],
+    queryFn:()=>lastValueFrom(this.productService.getProductId(this.productId)),
+    enabled:!! this.productId
+  }));
 
-  //constrcutor para Inyectar Dependencias
-  constructor(
-    private route: ActivatedRoute,
-    private readonly productService: ProductService
-  ) {
+  prescriptionId:number |null=null
 
-  }
-  ngOnInit() {
-    //Capturamos el ID de la url
-    const idstring = this.route.snapshot.paramMap.get('id');
-
-    if (idstring) {
-      //Convertimos de String a Number
-      const idNumber = Number(idstring);
-
-      //llamamos al servicio con el numero
-      this.loadProduct(idNumber);
-    } else {
-      //Si no carga el id de la url
-      this.loading = false;
-    }
-  }
-
-  loadProduct(id: number) {
-    //Llamamos al servicio
-    this.productService.getProductId(id).subscribe({
-      next: (data) => {
-        this.product = data;
-        this.loading = false;
-        console.log('Producto cargado', this.product);
-      },
-      //Capturamos el error
-      error: (err) => {
-        console.error('Error al cargar:', err)
-        this.loading = false;
-      }
-    });
-
-  }
-  // Método que recibe el ID
   onPrescriptionAttached(id: number) {
     this.prescriptionId = id;
   }
+  addToCart(){
+    const productData=this.productQuery.data();
 
-  //Metodo para añadir al carrito
-  addToCart() {
-    if (this.prescriptionId) {
-      // Lógica para enviar producto + prescriptionId al carrito
-      console.log('Enviando al carrito con fórmula:', this.prescriptionId);
-    }
+    if(!productData ||!this.prescriptionId)return
+
+    const newItem: CartItem = {
+      productId: productData.productId, 
+      nombreProducto: productData.nombre,
+      precioUnitario: productData.precio,
+      imagenProducto: productData.imagenKey,
+      cantidad: 1, 
+      stockDisponible: productData.stock, 
+      prescriptionId: this.prescriptionId 
+    };
+    //llamamos al signal
+    this.cartSignal.addToCart(newItem)
+
+    Swal.fire({
+      title: '¡Agregado!',
+      text: `${productData.nombre} se añadió al carrito.`,
+      icon: 'success',
+      confirmButtonColor: '#0d6efd',
+      timer: 2000,
+      showConfirmButton: false
+    });
   }
 
+ 
 
 
 }

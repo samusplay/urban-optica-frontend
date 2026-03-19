@@ -66,9 +66,7 @@
               <i class="bi bi-person-lines-fill me-1"></i> Mi Cuenta
             </a>
           </li>
-          }
-
-          @if (isLogged && userQuery.data(); as user) {
+          } @if (isLogged && userQuery.data(); as user) {
           <!-- Usuario autenticado -->
           <li class="nav-item position-relative">
             <!-- BOTÓN avatar + hamburguesa -->
@@ -93,12 +91,63 @@
           </li>
           }
 
-          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-            <a class="btn btn-primary" routerLink="/carrito">
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0 position-relative">
+            <button class="btn btn-primary d-flex align-items-center" (click)="toggleCart()">
               <i class="bi bi-cart-fill me-1"></i> Carrito
-              <span class="badge bg-white text-primary ms-1">0</span>
-            </a>
+              <span class="badge bg-white text-primary ms-2">{{ cartSignal.totalItems() }}</span>
+            </button>
+
+            @if (isCartOpen) {
+            <div class="dropdown-menu dropdown-menu-end shadow p-3 show"
+              style="position: absolute; right: 0; top: 100%; z-index: 1050; width: 320px;">
+
+              <h6 class="dropdown-header text-center fw-bold text-dark border-bottom pb-2">
+                Tu Pedido
+              </h6>
+
+              @if (cartSignal.totalItems() === 0) {
+              <div class="text-center py-4 text-muted">
+                <i class="bi bi-cart-x" style="font-size: 2rem;"></i>
+                <p class="mb-0 mt-2">El carrito está vacío</p>
+              </div>
+              }
+
+              @if (cartSignal.totalItems() > 0) {
+              <div class="cart-items mt-2" style="max-height: 250px; overflow-y: auto;">
+                @for (item of cartSignal.cartItems(); track item.productId) {
+                <div class="d-flex align-items-center border-bottom py-2">
+                  <img [src]="item.imagenProducto" alt="lente" class="rounded" width="50" height="50"
+                    style="object-fit: cover;">
+                  <div class="ms-2 flex-grow-1">
+                    <p class="mb-0 fw-bold lh-sm" style="font-size: 0.85rem;">{{ item.nombreProducto }}</p>
+                    <small class="text-muted">{{ item.cantidad }} x {{ item.precioUnitario | currency }}</small>
+                  </div>
+                  <button class="btn btn-sm text-danger"
+                    (click)="cartSignal.removeFromCart(item.productId, item.prescriptionId)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+                }
+              </div>
+
+              <div class="mt-3">
+                <div class="d-flex justify-content-between fw-bold mb-3">
+                  <span>Total:</span>
+                  <span>{{ cartSignal.grandTotal() | currency }}</span>
+                </div>
+                <a class="btn btn-success w-100" routerLink="/carrito" (click)="closeCart()">
+                  Ir a Pagar
+                </a>
+              </div>
+              }
+            </div>
+            }
           </li>
+
+          @if (isCartOpen) {
+          <div class="position-fixed top-0 start-0 w-100 h-100" style="z-index: 1040;" (click)="closeCart()">
+          </div>
+          }
         </ul>
       </div>
     </div>
