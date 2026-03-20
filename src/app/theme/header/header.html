@@ -116,8 +116,10 @@
               <div class="cart-items mt-2" style="max-height: 250px; overflow-y: auto;">
                 @for (item of cartSignal.cartItems(); track item.productId) {
                 <div class="d-flex align-items-center border-bottom py-2">
-                  <img [src]="item.imagenProducto" alt="lente" class="rounded" width="50" height="50"
+
+                  <img [src]="item.imagenProducto | urlS3" alt="lente" class="rounded" width="50" height="50"
                     style="object-fit: cover;">
+
                   <div class="ms-2 flex-grow-1">
                     <p class="mb-0 fw-bold lh-sm" style="font-size: 0.85rem;">{{ item.nombreProducto }}</p>
                     <small class="text-muted">{{ item.cantidad }} x {{ item.precioUnitario | currency }}</small>

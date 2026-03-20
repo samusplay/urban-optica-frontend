@@ -4,11 +4,12 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { CartSignalService } from '../../core/interceptors/signals/cart.signal';
 import { UserResponse } from '../../pages/profile-user/models/UserResponseDto';
+import { UrlS3Pipe } from '../../pipes/url-s3-pipe';
 
 @Component({
   selector: 'app-header',
   standalone:true,
-  imports: [RouterLink, RouterLinkActive,CommonModule],
+  imports: [RouterLink, RouterLinkActive,CommonModule,UrlS3Pipe],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })

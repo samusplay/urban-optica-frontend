@@ -1,9 +1,9 @@
-import { OrderItemRequestDto } from "./CartItem"
+import { OrderItemRequestDto } from "./CartItem";
 
 //Objeto que enviamos al Backend
 export interface OrderRequestDto{
     shippingAddress: string
-    metodoPago:string
+    paymentMethod: string;
     items:OrderItemRequestDto[]
 
 

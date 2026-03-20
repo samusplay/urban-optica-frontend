@@ -11,7 +11,7 @@ export const routes: Routes = [
       { path: '', loadComponent: () => import('./pages/home/home').then(m => m.HomeComponent) },
       { path: 'catalogo', loadComponent: () => import('./pages/catalogo/catalogo').then(m => m.CatalogoComponent) },
       { path: 'producto/:id', loadComponent: () => import('./pages/producto/producto').then(m => m.ProductoComponent) },
-      { path: 'carrrito', loadComponent: () => import('./pages/carrito/carrito.component').then(m => m.CarritoComponent) },
+      { path: 'carrito', loadComponent: () => import('./pages/carrito/carrito.component').then(m => m.CarritoComponent) },
       
     ],
   },
