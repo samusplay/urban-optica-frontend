@@ -1,0 +1,534 @@
+// Variables de colores
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$light-bg: #f8f9fa;
+$success-color: #198754;
+$border-radius: 12px;
+$transition: all 0.3s ease;
+
+// Hero Section
+.contacto-hero {
+  .hero-info {
+    p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+  
+  .hero-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+// Animación flotante
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+// Sección de Información de Contacto
+.contact-info {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .contact-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: $transition;
+    border: 1px solid rgba(0,0,0,0.05);
+    text-align: center;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, $primary-color, #0056b3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      
+      i {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+    
+    h3 {
+      color: $primary-color;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    
+    p {
+      color: $secondary-color;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    small {
+      color: $secondary-color;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Formulario de Contacto
+.formulario-contacto {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .contact-form {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    .form-label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+      border-radius: 8px;
+      border: 2px solid #e9ecef;
+      padding: 0.8rem;
+      transition: $transition;
+      
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+    }
+    
+    .form-check {
+      margin: 1rem 0;
+      
+      .form-check-input {
+        &:checked {
+          background-color: $primary-color;
+          border-color: $primary-color;
+        }
+      }
+      
+      .form-check-label {
+        font-size: 0.9rem;
+        color: $secondary-color;
+      }
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, $primary-color, #0056b3);
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      transition: $transition;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba($primary-color, 0.4);
+      }
+    }
+  }
+}
+
+// Sección de Ubicación
+.ubicacion {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .direccion-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    h3 {
+      color: $primary-color;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .direccion-info {
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        
+        i {
+          font-size: 1.3rem;
+          margin-right: 1rem;
+          margin-top: 0.2rem;
+        }
+        
+        div {
+          flex: 1;
+          
+          strong {
+            color: #333;
+            font-weight: 600;
+          }
+          
+          color: $secondary-color;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+  
+  .map-placeholder {
+    .map-content {
+      background: white;
+      border-radius: $border-radius;
+      padding: 3rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.05);
+      text-align: center;
+      
+      p {
+        color: $secondary-color;
+        margin: 1rem 0 0.5rem;
+      }
+      
+      small {
+        color: $secondary-color;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Sección FAQ
+.faq {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .accordion {
+    .accordion-item {
+      background: white;
+      border-radius: $border-radius;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.05);
+      
+      .accordion-header {
+        margin: 0;
+        
+        .accordion-button {
+          width: 100%;
+          background: white;
+          border: none;
+          padding: 1rem 1.5rem;
+          text-align: left;
+          font-weight: 600;
+          color: #333;
+          font-size: 1.1rem;
+          transition: $transition;
+          position: relative;
+          
+          &:not(.collapsed) {
+            background: rgba($primary-color, 0.1);
+            color: $primary-color;
+          }
+          
+          &:hover {
+            background: rgba($primary-color, 0.05);
+          }
+          
+          &::after {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: $transition;
+          }
+          
+          &.collapsed::after {
+            content: "+";
+          }
+          
+          &:not(.collapsed)::after {
+            content: "−";
+          }
+        }
+      }
+      
+      .accordion-collapse {
+        border: none;
+        
+        .accordion-body {
+          padding: 1.5rem;
+          color: $secondary-color;
+          line-height: 1.7;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// CTA Final
+.cta-final {
+  .cta-buttons {
+    .btn {
+      margin: 0.5rem;
+      min-width: 180px;
+      transition: $transition;
+      
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .contacto-hero {
+    text-align: center;
+    
+    .col-lg-8 {
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-icon i {
+      font-size: 5rem !important;
+    }
+  }
+  
+  .contact-info {
+    .contact-card {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      
+      h3 {
+        font-size: 1.1rem;
+      }
+      
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        
+        i {
+          font-size: 1.5rem;
+        }
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .formulario-contacto {
+    .contact-form {
+      padding: 1.5rem;
+    }
+  }
+  
+  .ubicacion {
+    .direccion-card {
+      padding: 1.5rem;
+      
+      h3 {
+        font-size: 1.1rem;
+      }
+      
+      .direccion-info {
+        .info-item {
+          flex-direction: column;
+          text-align: center;
+          
+          i {
+            margin-right: 0;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+    
+    .map-placeholder {
+      margin-top: 2rem;
+    }
+  }
+  
+  .faq {
+    .accordion {
+      .accordion-item {
+        .accordion-header {
+          .accordion-button {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            
+            &::after {
+              right: 1rem;
+            }
+          }
+        }
+        
+        .accordion-collapse {
+          .accordion-body {
+            padding: 1rem;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  
+  .cta-final {
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+    
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .contacto-hero {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+    
+    .hero-info p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .contact-info {
+    .contact-card {
+      padding: 1rem;
+      
+      h3 {
+        font-size: 1rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  .formulario-contacto {
+    .contact-form {
+      padding: 1rem;
+      
+      .form-label {
+        font-size: 0.9rem;
+      }
+      
+      .form-control {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  .ubicacion {
+    .direccion-card {
+      padding: 1rem;
+      
+      h3 {
+        font-size: 1rem;
+      }
+      
+      .direccion-info {
+        .info-item {
+          margin-bottom: 1rem;
+          
+          div {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+    
+    .map-placeholder {
+      .map-content {
+        padding: 2rem;
+      }
+    }
+  }
+  
+  .faq {
+    .accordion {
+      .accordion-item {
+        .accordion-header {
+          .accordion-button {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
+            
+            &::after {
+              right: 0.8rem;
+            }
+          }
+        }
+        
+        .accordion-collapse {
+          .accordion-body {
+            padding: 0.8rem;
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+  }
+  
+  .cta-final {
+    h2 {
+      font-size: 1.6rem;
+    }
+    
+    .lead {
+      font-size: 0.95rem;
+    }
+  }
+}

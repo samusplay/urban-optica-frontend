@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Variables locales
 $accent-color: #0066ff;
 $success-color: #28a745;
@@ -99,7 +101,7 @@ h6 {
 
 // Botón de Envío
 .btn-primary {
-  background: linear-gradient(135deg, $accent-color, darken($accent-color, 5%));
+  background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: -5%));
   border: none;
   border-radius: 12px;
   padding: 0.8rem !important;
@@ -111,7 +113,7 @@ h6 {
   &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba($accent-color, 0.3);
-    background: linear-gradient(135deg, lighten($accent-color, 5%), $accent-color);
+    background: linear-gradient(135deg, color.adjust($accent-color, $lightness: 5%), $accent-color);
   }
 
   &:disabled {

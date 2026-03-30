@@ -19,11 +19,16 @@
         class="carousel-item" 
         *ngFor="let s of slides; let i = index" 
         [ngClass]="{ 'active': i === 0 }">
-        <img 
+        <video 
           [src]="s.src" 
-          class="d-block w-100 carousel-img" 
-          [alt]="s.alt" 
-          loading="lazy" />
+          class="d-block w-100 carousel-video" 
+          autoplay
+          muted
+          loop
+          playsinline
+          loading="lazy">
+          Tu navegador no soporta videos HTML5.
+        </video>
         <div class="carousel-caption">
           <h3>{{ s.title || 'Oferta Especial' }}</h3>
           <p *ngIf="s.description" class="d-none d-md-block">{{ s.description }}</p>

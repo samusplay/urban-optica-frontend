@@ -1,0 +1,256 @@
+// Variables de colores
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$light-bg: #f8f9fa;
+$success-color: #198754;
+$border-radius: 12px;
+$transition: all 0.3s ease;
+
+// Hero Section
+.nosotros-hero {
+  .contact-info {
+    p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+  
+  .hero-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+// Animación flotante
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+// Sección de Propósito
+.proposito {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .proposito-content {
+    max-width: 800px;
+    margin: 0 auto;
+    
+    .lead {
+      font-size: 1.3rem;
+      color: $secondary-color;
+      font-weight: 300;
+    }
+  }
+}
+
+// Sección de Definición
+.definicion {
+  .definicion-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: $transition;
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, $primary-color, #0056b3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      
+      i {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+    
+    h3 {
+      color: $primary-color;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    p {
+      color: $secondary-color;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+}
+
+// Sección de Tecnología
+.tecnologia {
+  .tecnologia-list {
+    .tecnologia-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      background: rgba($success-color, 0.1);
+      border-radius: 8px;
+      border-left: 4px solid $success-color;
+      
+      span {
+        font-size: 1.1rem;
+        color: #333;
+      }
+      
+      i {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  .tecnologia-icon {
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+// Animación de pulso
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+// CTA Final
+.cta-final {
+  .cta-buttons {
+    .btn {
+      margin: 0.5rem;
+      min-width: 180px;
+      transition: $transition;
+      
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .nosotros-hero {
+    text-align: center;
+    
+    .col-lg-8 {
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-icon i {
+      font-size: 5rem !important;
+    }
+  }
+  
+  .definicion {
+    .definicion-card {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      
+      h3 {
+        font-size: 1.1rem;
+      }
+      
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        
+        i {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  
+  .tecnologia {
+    text-align: center;
+    
+    .col-lg-6:first-child {
+      margin-bottom: 2rem;
+    }
+    
+    .tecnologia-icon i {
+      font-size: 4rem !important;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .nosotros-hero {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+    
+    .contact-info p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .proposito {
+    .proposito-content .lead {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .definicion {
+    .definicion-card {
+      padding: 1rem;
+      
+      h3 {
+        font-size: 1rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  .tecnologia {
+    .tecnologia-item {
+      padding: 0.6rem;
+      
+      span {
+        font-size: 0.95rem;
+      }
+    }
+  }
+  
+  .cta-final {
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+    
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  }
+}

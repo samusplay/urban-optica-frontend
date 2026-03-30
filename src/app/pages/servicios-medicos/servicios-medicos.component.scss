@@ -1,0 +1,505 @@
+// Variables de colores
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$light-bg: #f8f9fa;
+$success-color: #198754;
+$warning-color: #ffc107;
+$border-radius: 12px;
+$transition: all 0.3s ease;
+
+// Hero Section
+.servicios-hero {
+  .hero-info {
+    p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+  
+  .hero-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+// Animación flotante
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+// Sección de Exámenes Visuales
+.examenes-visuales {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .servicio-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: $transition;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, $primary-color, #0056b3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      
+      i {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+    
+    h3 {
+      color: $primary-color;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    p {
+      color: $secondary-color;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .servicio-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba($primary-color, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid $primary-color;
+      
+      .price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $primary-color;
+      }
+      
+      .duration {
+        color: $secondary-color;
+        font-size: 0.9rem;
+        background: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        border: 1px solid rgba($primary-color, 0.3);
+      }
+    }
+  }
+}
+
+// Sección de Lentes de Contacto
+.lentes-contacto {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .lentes-info {
+    .lentes-list {
+      .lente-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background: rgba($success-color, 0.1);
+        border-radius: 8px;
+        border-left: 4px solid $success-color;
+        
+        span {
+          font-size: 1.1rem;
+          color: #333;
+        }
+        
+        i {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    
+    .precio-adaptacion {
+      background: linear-gradient(135deg, $primary-color, #0056b3);
+      color: white;
+      padding: 1.5rem;
+      border-radius: $border-radius;
+      text-align: center;
+      
+      h4 {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+      
+      .price-main {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0.5rem 0;
+      }
+      
+      .includes {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin: 0;
+      }
+    }
+  }
+  
+  .lentes-icon {
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+// Sección de Tratamientos
+.tratamientos {
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, #0056b3);
+    border-radius: 2px;
+  }
+  
+  .tratamiento-card {
+    background: white;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: $transition;
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .tratamiento-header {
+      background: linear-gradient(135deg, $primary-color, #0056b3);
+      color: white;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        
+        i {
+          font-size: 1.5rem;
+          color: white;
+        }
+      }
+      
+      h3 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+    }
+    
+    .tratamiento-content {
+      padding: 1.5rem;
+      
+      p {
+        color: $secondary-color;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      
+      .tratamiento-details {
+        .detail-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.8rem;
+          color: $secondary-color;
+          
+          i {
+            color: $primary-color;
+            margin-right: 0.5rem;
+          }
+        }
+        
+        .tratamiento-price {
+          margin-top: 1rem;
+          padding: 1rem;
+          background: rgba($primary-color, 0.1);
+          border-radius: 8px;
+          text-align: center;
+          border-left: 4px solid $primary-color;
+          
+          .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $primary-color;
+            display: block;
+            margin-bottom: 0.3rem;
+          }
+          
+          small {
+            color: $secondary-color;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Sección de Agendar
+.agendar {
+  .agendar-info {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      
+      i {
+        font-size: 1.3rem;
+        margin-right: 1rem;
+      }
+      
+      span {
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  .cta-buttons {
+    .btn {
+      margin: 0.5rem;
+      min-width: 180px;
+      transition: $transition;
+      
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Animación de pulso
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .servicios-hero {
+    text-align: center;
+    
+    .col-lg-8 {
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-icon i {
+      font-size: 5rem !important;
+    }
+  }
+  
+  .examenes-visuales {
+    .servicio-card {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      
+      h3 {
+        font-size: 1.1rem;
+      }
+      
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        
+        i {
+          font-size: 1.5rem;
+        }
+      }
+      
+      .servicio-price {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        
+        .duration {
+          align-self: center;
+        }
+      }
+    }
+  }
+  
+  .lentes-contacto {
+    text-align: center;
+    
+    .col-lg-6:first-child {
+      margin-bottom: 2rem;
+    }
+    
+    .lentes-icon i {
+      font-size: 4rem !important;
+    }
+  }
+  
+  .tratamientos {
+    .tratamiento-card {
+      .tratamiento-header {
+        padding: 1rem;
+        
+        .card-icon {
+          width: 50px;
+          height: 50px;
+          
+          i {
+            font-size: 1.2rem;
+          }
+        }
+        
+        h3 {
+          font-size: 1rem;
+        }
+      }
+      
+      .tratamiento-content {
+        padding: 1rem;
+      }
+    }
+  }
+  
+  .agendar {
+    .agendar-info {
+      .info-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 0.8rem;
+        
+        i {
+          margin-right: 0;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+    
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .servicios-hero {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+    
+    .hero-info p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .examenes-visuales {
+    .servicio-card {
+      padding: 1rem;
+      
+      h3 {
+        font-size: 1rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+      
+      .servicio-price {
+        .price {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+  
+  .lentes-contacto {
+    .lentes-info {
+      .precio-adaptacion {
+        padding: 1rem;
+        
+        .price-main {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  
+  .tratamientos {
+    .tratamiento-card {
+      .tratamiento-header {
+        h3 {
+          font-size: 0.9rem;
+        }
+      }
+      
+      .tratamiento-content {
+        p {
+          font-size: 0.9rem;
+        }
+        
+        .tratamiento-details {
+          .tratamiento-price {
+            .price {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .agendar {
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    .lead {
+      font-size: 1rem;
+    }
+  }
+}

@@ -12,6 +12,9 @@ export const routes: Routes = [
       { path: 'catalogo', loadComponent: () => import('./pages/catalogo/catalogo').then(m => m.CatalogoComponent) },
       { path: 'producto/:id', loadComponent: () => import('./pages/producto/producto').then(m => m.ProductoComponent) },
       { path: 'carrito', loadComponent: () => import('./pages/carrito/carrito.component').then(m => m.CarritoComponent) },
+      { path: 'nosotros', loadComponent: () => import('./pages/nosotros/nosotros.component').then(m => m.NosotrosComponent) },
+      { path: 'contacto', loadComponent: () => import('./pages/contacto/contacto.component').then(m => m.ContactoComponent) },
+      { path: 'servicios', loadComponent: () => import('./pages/servicios-medicos/servicios-medicos.component').then(m => m.ServiciosMedicosComponent) },
       
     ],
   },
@@ -21,6 +24,7 @@ export const routes: Routes = [
     children: [
       { path: 'login', loadComponent: () => import('./pages/auth/login/login').then(m => m.LoginComponent) },
       { path: 'register', loadComponent: () => import('./pages/auth/register/register').then(m => m.RegisterComponent) },
+
       { path: '', redirectTo: 'login', pathMatch: 'full' }  // Redirige /auth a login por default
 
     ]

@@ -14,25 +14,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   //Identiicador unico para manejar el slide
   carouselId = "carouselHome";
 
-  // Luego podemos migrar a S3 o algún otro servicio de almacenamiento
+  // Videos para el carrusel
   slides = [
     { 
-      src: "carousel/slide-1.jpg", 
-      alt: "Venta de lentes por internet",
-      title: "¡Lentes por Internet!",
-      description: "Compra tus lentes desde la comodidad de tu hogar con solo unos clics"
+      src: "video/clip1.mp4", 
+      alt: "Video de lentes premium",
+      title: "LENTES EN INTERNET",
+      description: "Compra tus lentes online con la mejor calidad y envío a domicilio"
     },
     { 
-      src: "carousel/slide-2.jpg", 
-      alt: "Envíos a todo el país",
-      title: "Envíos a Todo el País",
-      description: "Recibe tus lentes en la puerta de tu casa, dondequiera que estés"
-    },
-    { 
-      src: "carousel/slide-3.jpg", 
-      alt: "Tienda online de lentes",
-      title: "Tu Óptica Online",
-      description: "La mejor selección de lentes con envíos seguros y rápidos"
+      src: "video/clip2.mp4", 
+      alt: "Video de servicios ópticos",
+      title: "LENTES EN INTERNET",
+      description: "La tienda online más confiable para tus lentes y productos ópticos"
     },
   ];
 
