@@ -10,24 +10,25 @@
     border-radius: 12px;
   }
 
-  img {
-    height: 500px;
+  .carousel-img {
     width: 100%;
+    height: 500px;
     object-fit: cover;
     object-position: center;
     filter: brightness(0.9);
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, filter 0.3s ease;
   }
 
-  &:hover img {
+  &:hover .carousel-img {
     transform: scale(1.02);
+    filter: brightness(1);
   }
 
   .carousel-control-prev,
   .carousel-control-next {
     width: 5%;
     opacity: 0.8;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
     
     &:hover {
       opacity: 1;
@@ -44,27 +45,241 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .carousel-control-prev:hover .carousel-control-prev-icon,
+  .carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.8);
   }
 }
 
 // Efecto de transición suave para los slides
 .carousel-item {
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 // Indicadores del carrusel
 .carousel-indicators {
   button {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    margin: 0 5px;
+    margin: 0 6px;
     background-color: rgba(255, 255, 255, 0.5);
-    border: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      transform: scale(1.1);
+    }
     
     &.active {
       background-color: #fff;
       transform: scale(1.2);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+// Mejoras para el caption
+.carousel-caption {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  padding: 2rem 1rem 1rem;
+  border-radius: 0 0 12px 12px;
+  
+  h3 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  p {
+    margin-bottom: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+}
+
+// Responsive mejorado para móviles
+@media (max-width: 768px) {
+  .carousel {
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    
+    .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    
+    .carousel-img {
+      height: 300px;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 8%;
+      opacity: 0.9;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      width: 32px;
+      height: 32px;
+      padding: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .carousel-indicators {
+      bottom: 10px;
+      
+      button {
+        width: 10px;
+        height: 10px;
+        margin: 0 4px;
+        
+        &.active {
+          transform: scale(1.3);
+        }
+      }
+    }
+    
+    .carousel-caption {
+      padding: 1.5rem 0.75rem 0.75rem;
+      bottom: 20px;
+      
+      h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+        line-height: 1.3;
+      }
+      
+      p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Tablets
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carousel {
+    .carousel-img {
+      height: 400px;
+    }
+    
+    .carousel-caption {
+      padding: 1.75rem 1rem 0.875rem;
+      
+      h3 {
+        font-size: 1.4rem;
+      }
+      
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+// Móviles muy pequeños
+@media (max-width: 480px) {
+  .carousel {
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    
+    .carousel-img {
+      height: 250px;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 10%;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      width: 28px;
+      height: 28px;
+      padding: 6px;
+    }
+    
+    .carousel-indicators {
+      bottom: 8px;
+      
+      button {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+      }
+    }
+    
+    .carousel-caption {
+      padding: 1rem 0.5rem 0.5rem;
+      bottom: 15px;
+      
+      h3 {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+      }
+      
+      p {
+        font-size: 0.8rem;
+        display: none; // Ocultar descripción en pantallas muy pequeñas
+      }
+    }
+  }
+}
+
+// Optimizaciones para dispositivos táctiles
+@media (hover: none) and (pointer: coarse) {
+  .carousel {
+    .carousel-control-prev,
+    .carousel-control-next {
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.2);
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    &:hover .carousel-img {
+      transform: none;
+      filter: brightness(0.9);
+    }
+  }
+}
+
+// Mejoras para accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    .carousel-img,
+    .carousel-item,
+    .carousel-control-prev,
+    .carousel-control-next,
+    .carousel-indicators button {
+      transition: none;
+    }
+    
+    &:hover .carousel-img {
+      transform: none;
+    }
+  }
+}
+
+// Optimizaciones para modo oscuro
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .carousel {
+    .carousel-caption {
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
     }
   }
 }

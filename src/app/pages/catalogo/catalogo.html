@@ -9,7 +9,10 @@
       
       <div class="product-card" (click)="viewProductDetail(item)">
         <div class="img-container">
-          <div class="badge-overlay">Disponible</div>
+          <div class="badge-overlay">
+            <span class="badge-pulse"></span>
+            DISPONIBLE
+          </div>
           
           <img 
             [src]="item.imagenKey | urlS3" 
@@ -18,14 +21,33 @@
             loading="lazy"
           >
           
+          <div class="quick-actions">
+            <button class="btn-quick" (click)="viewProductDetail(item); $event.stopPropagation()" title="Ver detalles">
+              <i class="bi bi-eye"></i>
+            </button>
+            <button class="btn-quick" (click)="toggleFavorite(item); $event.stopPropagation()" title="Agregar a favoritos">
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+          
           <div class="view-more">
             <span>VER DETALLE</span>
+            <i class="bi bi-arrow-right"></i>
           </div>
         </div>
 
         <div class="product-info text-center">
           <h3 class="product-name">{{ item.nombre }}</h3>
-          <p class="product-price">$ {{ item.precio | number:'1.0-0' }}</p>
+          <div class="price-container">
+            <p class="product-price">$ {{ item.precio | number:'1.0-0' }}</p>
+            <div class="price-tag">
+              <span class="currency">$</span>
+              <span class="amount">{{ item.precio | number:'1.0-0' }}</span>
+            </div>
+          </div>
+          <button class="btn-add-cart" (click)="addToCart(item); $event.stopPropagation()">
+            <i class="bi bi-file-earmark-medical me-2"></i>Necesita Fórmula
+          </button>
         </div>
       </div>
 

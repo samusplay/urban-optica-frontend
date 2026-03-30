@@ -187,43 +187,207 @@ footer {
     }
   }
   
-  // Estilos responsivos
-  @media (max-width: 991.98px) {
-    text-align: center;
+  // Responsive mejorado para móviles
+  @media (max-width: 768px) {
+    padding: 3rem 0 1rem;
+    
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .row {
+      gap: 2rem;
+    }
+    
+    .col-lg-4, .col-lg-3, .col-lg-2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
     
     h5 {
+      font-size: 1.25rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      
       &::after {
         left: 50%;
         transform: translateX(-50%);
+        width: 60px;
+      }
+      
+      img {
+        margin-bottom: 0.5rem;
       }
     }
     
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
     .social-links {
+      display: flex;
       justify-content: center;
+      gap: 1rem;
       margin-bottom: 2rem;
+      
+      a {
+        width: 48px;
+        height: 48px;
+        margin: 0;
+        
+        &:hover {
+          transform: translateY(-3px) scale(1.05);
+        }
+      }
     }
     
     .list-unstyled {
       margin-bottom: 2rem;
       
       li {
-        justify-content: center !important;
+        justify-content: center;
         text-align: center;
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.02);
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+          transform: translateY(-1px);
+        }
+        
+        .bi {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          display: block;
+        }
+        
+        span, a {
+          font-size: 0.95rem;
+        }
       }
     }
     
     .payment-methods {
+      display: flex;
       justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      
+      .bi {
+        font-size: 1.8rem;
+        
+        &:hover {
+          transform: translateY(-2px) scale(1.1);
+        }
+      }
     }
-  }
-  
-  @media (max-width: 767.98px) {
-    .text-md-start, .text-md-end {
+    
+    // Formulario newsletter móvil
+    .form-control {
+      min-height: 44px;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .btn-primary {
+      min-height: 44px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+    
+    // Copyright móvil
+    .text-center, .text-md-start, .text-md-end {
       text-align: center !important;
+      margin-bottom: 1rem;
     }
     
     .list-inline {
+      display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      
+      .list-inline-item {
+        margin: 0;
+      }
+    }
+  }
+  
+  // Tablets
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    .col-lg-4, .col-lg-3 {
+      margin-bottom: 2rem;
+    }
+    
+    h5 {
+      font-size: 1.1rem;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  // Pequeños ajustes para móviles muy pequeños
+  @media (max-width: 480px) {
+    padding: 2rem 0 1rem;
+    
+    h5 {
+      font-size: 1.1rem;
+      
+      img {
+        width: 30px !important;
+        height: 30px !important;
+      }
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      
+      .bi {
+        font-size: 1rem;
+      }
+    }
+    
+    .payment-methods {
+      gap: 1rem;
+      
+      .bi {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  
+  // Optimizaciones para iOS Safari
+  @supports (-webkit-touch-callout: none) {
+    .form-control {
+      -webkit-appearance: none;
+      -webkit-border-radius: 8px;
+    }
+    
+    .btn-primary {
+      -webkit-appearance: none;
+      -webkit-border-radius: 8px;
     }
   }
 }
@@ -238,4 +402,9 @@ footer {
 hr {
   border-top: 1px solid $border-color;
   opacity: 0.3;
+  margin: 2rem 0;
+  
+  @media (max-width: 768px) {
+    margin: 1.5rem 0;
+  }
 }

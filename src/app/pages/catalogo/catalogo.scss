@@ -1,7 +1,11 @@
-// Variables
+// Variables Modernas
 $text-dark: #1a1a1a;
 $accent-blue: #0066ff;
+$accent-green: #00d4aa;
+$accent-purple: #6c5ce7;
 $bg-soft: #f9f9f9;
+$gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$gradient-card: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
 
 .titulo-catalogo {
   font-size: 2.5rem;
@@ -9,17 +13,36 @@ $bg-soft: #f9f9f9;
   color: $text-dark;
   letter-spacing: -1px;
   margin-bottom: 0.5rem;
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .product-card {
-  background: transparent;
+  background: $gradient-card;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: $gradient-primary;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
 
-  // 1. EL CONTENEDOR DE LA IMAGEN
+  // 1. EL CONTENEDOR DE LA IMAGEN - MEJORADO
   .img-container {
-    background-color: $bg-soft;
+    background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 20px;
     height: 300px;
     display: flex;
@@ -28,93 +51,449 @@ $bg-soft: #f9f9f9;
     padding: 30px;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
     img {
       max-height: 100%;
       object-fit: contain;
-      transition: all 0.5s ease;
-      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
+      transform: scale(1);
     }
 
+    // Badge mejorado con animación
     .badge-overlay {
       position: absolute;
       top: 15px;
       left: 15px;
-      background: white;
-      padding: 4px 12px;
+      background: linear-gradient(135deg, $accent-green 0%, #00b894 100%);
+      color: white;
+      padding: 6px 14px;
       border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      color: #777;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+      
+      .badge-pulse {
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
     }
 
+    // Botones rápidos flotantes
+    .quick-actions {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.3s ease;
+      z-index: 3;
+
+      .btn-quick {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.9);
+        color: $accent-blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+
+        &:hover {
+          background: $accent-blue;
+          color: white;
+          transform: scale(1.1);
+          box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+        }
+
+        i {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    // View mejorado
     .view-more {
       position: absolute;
-      bottom: -50px; // Escondido abajo
-      background: rgba(255, 255, 255, 0.9);
+      bottom: -60px;
+      background: rgba(255, 255, 255, 0.95);
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       text-align: center;
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       letter-spacing: 1px;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: $accent-blue;
+
+      i {
+        transition: transform 0.3s ease;
+      }
     }
   }
 
-  // 2. TEXTOS ABAJO
+  // 2. TEXTOS MEJORADOS
   .product-info {
-    padding: 20px 10px;
+    padding: 25px 15px;
+    background: white;
+    border-radius: 0 0 24px 24px;
 
     .product-name {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: $text-dark;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      transition: color 0.3s ease;
     }
 
-    .product-price {
-      font-size: 1rem;
-      color: $accent-blue;
-      font-weight: 700;
-      margin: 0;
+    .price-container {
+      position: relative;
+      margin-bottom: 20px;
+
+      .product-price {
+        font-size: 1.1rem;
+        color: $accent-blue;
+        font-weight: 800;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+      }
+
+      .price-tag {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 2px;
+        
+        .currency {
+          font-size: 1rem;
+          font-weight: 600;
+          color: $accent-blue;
+          transform: translateY(-2px);
+        }
+        
+        .amount {
+          font-size: 1.8rem;
+          font-weight: 900;
+          color: $accent-blue;
+          line-height: 1;
+          background: linear-gradient(135deg, $accent-blue 0%, $accent-purple 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      }
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      padding: 12px 20px;
+      background: $gradient-primary;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      transform: translateY(0);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
 
-  // 3. EFECTOS HOVER
+  // 3. EFECTOS HOVER ULTRA-MODERNOS
   &:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    
+    &::before {
+      transform: scaleX(1);
+    }
+
     .img-container {
-      background-color: #ebeef1;
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      background: linear-gradient(145deg, #ffffff 0%, #f1f3f5 100%);
+      transform: scale(1.02);
+
+      &::before {
+        opacity: 1;
+      }
 
       img {
-        transform: scale(1.1);
+        transform: scale(1.15) rotate(2deg);
+        filter: drop-shadow(0 20px 35px rgba(0,0,0,0.15));
+      }
+
+      .quick-actions {
+        opacity: 1;
+        transform: translateX(0);
       }
 
       .view-more {
-        bottom: 0; // Sube al hacer hover
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.98);
+        
+        i {
+          transform: translateX(4px);
+        }
       }
     }
 
     .product-name {
       color: $accent-blue;
+    }
+
+    .product-price {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
 
-// Responsivo para móviles
-@media (max-width: 576px) {
-  .img-container {
-    height: 250px;
+// Animación de pulse
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
   }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+// Animaciones para feedback del carrito
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+// Estilos globales para modales y feedback
+.cart-feedback {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  .cart-feedback-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    i {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    
+    span {
+      line-height: 1.3;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Responsive mejorado para móviles
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .titulo-catalogo {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-card {
+    margin-bottom: 1.5rem;
+    
+    .img-container {
+      height: 280px;
+      padding: 20px;
+      
+      .badge-overlay {
+        top: 10px;
+        left: 10px;
+        padding: 4px 10px;
+        font-size: 0.65rem;
+      }
+      
+      .quick-actions {
+        top: 10px;
+        right: 10px;
+        
+        .btn-quick {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+    
+    .product-info {
+      padding: 20px 12px;
+      
+      .product-name {
+        font-size: 1rem;
+      }
+      
+      .price-tag {
+        .amount {
+          font-size: 1.6rem;
+        }
+      }
+      
+      .btn-add-cart {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+    }
+    
+    &:hover {
+      .img-container {
+        transform: scale(1.01);
+      }
+    }
+  }
+}
+
+// Móviles muy pequeños
+@media (max-width: 480px) {
   .titulo-catalogo {
     font-size: 1.8rem;
+  }
+
+  .product-card {
+    .img-container {
+      height: 250px;
+      padding: 15px;
+    }
+    
+    .product-info {
+      padding: 15px 10px;
+      
+      .price-tag .amount {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+// Tablets
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-card {
+    .img-container {
+      height: 320px;
+    }
+  }
+}
+
+// Optimizaciones para dispositivos táctiles
+@media (hover: none) and (pointer: coarse) {
+  .product-card {
+    .quick-actions {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+// Modo oscuro
+@media (prefers-color-scheme: dark) {
+  .product-card {
+    background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+    
+    .product-info {
+      background: #2d3748;
+      color: white;
+      
+      .product-name {
+        color: white;
+      }
+    }
   }
 }
