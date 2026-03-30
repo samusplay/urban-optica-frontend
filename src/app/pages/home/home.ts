@@ -28,6 +28,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       title: "LENTES EN INTERNET",
       description: "La tienda online más confiable para tus lentes y productos ópticos"
     },
+    {
+      src: "video/clip3.mp4",
+      alt: "Video de promociones",
+      title: "LENTES EN INTERNET",
+      description: "Descubre nuestras promociones especiales para ti"
+    },
+    {
+      src: "video/clip4.mp4",
+      alt: "Video de atención al cliente",
+      title: "LENTES EN INTERNET",
+      description: "Nuestro equipo está listo para atenderte y resolver tus dudas"
+    }
   ];
 
   private carouselInstance: any;
