@@ -11,7 +11,7 @@ import { Header } from "../header/header";
   styleUrl: './public-layout.scss',
 })
 export class PublicLayout {
-  //inyectamos servicio del carrito
+  
   
   
 

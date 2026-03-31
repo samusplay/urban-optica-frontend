@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2'; // <--- Importamos SweetAlert
 import { AuthService } from '../services/auth.service';
+import { AuthSignalService } from '../../../core/interceptors/signals/auth.signal';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,9 @@ export class LoginComponent {
     private readonly fb: FormBuilder,
     private readonly authservice: AuthService,
     private readonly router: Router,
-    private readonly route: ActivatedRoute 
+    private readonly route: ActivatedRoute,
+    //activa el signal para mantener la foto
+    private readonly authSignal: AuthSignalService
   ) {
     // Inicializamos el formulario
     this.form = this.fb.group({
@@ -70,6 +73,8 @@ export class LoginComponent {
       next: (response) => {
         this.isLoading = false;
         this.form.reset(); //Reset
+        //llamamos al signal
+        this.authSignal.login(response.token);
         
         // ✅ ÉXITO
         Swal.fire({
